@@ -1,1 +1,1 @@
-import calc
+from calc.calc import *
