@@ -49,11 +49,11 @@ done
 ```
 
 #### Задачки
-    Нужно реализовать следующие методы: 
+Нужно реализовать следующие методы: 
 
-    - *shuffle* - перемешивает элементы в списке
-    - *kebabToSnake* - превращает строки вида `kabeab-to-snake` в `kebab_to_snake`
-    - *kebabToCamel* - превращает строки вида `kabeab-to-snake` в `kebabToSnake`
+ - *shuffle* - перемешивает элементы в списке
+ - *kebabToSnake* - превращает строки вида `kabeab-to-snake` в `kebab_to_snake`
+ - *kebabToCamel* - превращает строки вида `kabeab-to-snake` в `kebabToSnake`
 
 ```python
 def shuffle(lst):
