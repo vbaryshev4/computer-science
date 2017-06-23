@@ -37,4 +37,19 @@ def split_by_first(string, char):
         return string
 
 
+def kebabToSnake(string):
+    # kebabToSnake - превращает строки вида kabeab-to-snake в kebab_to_snake
+    while index_of(string, "-") != False:
+        index = index_of(string, "-")
+        string = (string[:index] + "_" + string[index+1:])
+    return string
 
+def kebabToCamel(string):
+    # kebabToCamel - превращает строки вида kabeab-to-snake в kebabToCamel
+    while index_of(string, "-") != False:
+        index = index_of(string, "-")
+        string = (string[:index] + string[index+1].upper() + string[index+2:])
+    return string
+
+
+    
