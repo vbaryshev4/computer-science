@@ -1,8 +1,5 @@
-import sys
-sys.path.insert(0, '/Users/vbaryshev/Documents/Python files/Trdat/computer-science')
-
-from tester.tester import *
-from string.string import *
+from modules.string import *
+from modules.tester import *
 
 equality_case(trim('  a'), 'a', 'Should trim spaces from start of string')
 equality_case(trim('a   '), 'a', 'Should trim spaces from end of string')

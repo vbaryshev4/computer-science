@@ -1,1 +1,0 @@
-from tester.tester import *

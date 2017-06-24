@@ -1,7 +1,4 @@
-import sys
-sys.path.insert(0, '/Users/vbaryshev/Documents/Python files/Trdat/computer-science')
-
-from string.string import *
+from modules.string import *
 
 fns = {
     '+': lambda x, y: x + y,
