@@ -36,12 +36,15 @@ def split_by_first(string, char):
     else:
         return string
 
+def replace(string, char, new_char):
+    while index_of(string, char) != False:
+        index = index_of(string, char)
+        string = (string[:index] + new_char + string[index+1:])
+    return string
 
 def kebabToSnake(string):
     # kebabToSnake - превращает строки вида kabeab-to-snake в kebab_to_snake
-    while index_of(string, "-") != False:
-        index = index_of(string, "-")
-        string = (string[:index] + "_" + string[index+1:])
+    string = replace(string, "-", "_")
     return string
 
 def kebabToCamel(string):
