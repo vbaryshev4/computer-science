@@ -15,6 +15,3 @@ equality_case(count("+-+++--", "+"), (4), "Should work correctly")
 equality_case(count("aAaAAA", "a"), (2), "Should work correctly") 
 equality_case(count("?###!%", "?"), (1), "Should work correctly") 
 equality_case(count("?###!%", "#"), (3), "Should work correctly") 
-
-
-
