@@ -37,3 +37,12 @@ empty_case = case_generator(is_empty, '{0} not empty')
 type_case = case_generator(value_to_types, '{0} type is not {1}')
 same_type_case = case_generator(types_to_types,'Type of {0} should be same type as type of {1}')
 shorter_case = case_generator(lenght_list, 'List of {0} shorter than list of {1}')
+
+def error_case(fn, ok, message=''):
+	print("---- ")
+	print("Message: " + ok)
+	try:
+		fn()
+		print('Status Fail: {}'.format(message))
+	except:
+		print('Status: Ok')
