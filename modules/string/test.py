@@ -1,12 +1,9 @@
+#!/usr/local/bin/python3.6
+
+
 from modules.string import *
 from modules.tester import *
-
-import sys
-testfn = sys.argv[-1]
-
-if testfn == './test.py':
-	testfn = 'main'
-
+ 
 
 def _trim():
 	equality_case(trim('  a'), 'a', 'Should trim spaces from start of string')
