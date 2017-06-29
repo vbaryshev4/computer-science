@@ -69,9 +69,12 @@ def capitalize(string):
         'One
         Two'
     """
+    string = trim(string)
+    while index_of(string, " ") != False:
+        index = index_of(string, " ")
+        string = (string[:index] + string[index+1].upper() + string[index+2:])
+    return string
     
-    pass
-
 def paretntesize(string):
     """
         Принимает строку, которая может содержать скобки. 

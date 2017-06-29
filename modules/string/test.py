@@ -23,13 +23,19 @@ def _count():
 	equality_case(count("+-+++--", "+"), (4), "Should work correctly") 
 	equality_case(count("aAaAAA", "a"), (2), "Should work correctly") 
 	equality_case(count("?###!%", "?"), (1), "Should work correctly") 
-	equality_case(count("?###!%", "#"), (3), "Should work correctly") 
+	equality_case(count("?###!%", "#"), (3), "Should work correctly")
+
+def _capitalize():
+	equality_case(capitalize('this is my world'),('This Is My World'), "Should work correctly")
+	equality_case(capitalize('hello'),('Hello'), "Should work correctly")
+	equality_case(capitalize('one \ntwo'),('One \nTwo'), "Should work correctly")
 
 blocks = {
 	'trim': _trim,
 	'kebab': _kebab,
 	'parentes': _parentes,
-	'count': _count	
+	'count': _count,
+	'capitalize': _capitalize
 }
 
 if testfn == 'main':
