@@ -1,3 +1,6 @@
+#!/usr/local/bin/python3.6
+
+
 def trim(string):
     while string[0] == " ":
         string = string[1:]
