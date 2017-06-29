@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3.6
+
 # check module
 def case_generator(checking_func, error_msg):
 
