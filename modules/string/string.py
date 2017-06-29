@@ -1,6 +1,5 @@
 #!/usr/local/bin/python3.6
 
-
 def trim(string):
     while string[0] == " ":
         string = string[1:]
@@ -57,6 +56,7 @@ def kebabToCamel(string):
         string = (string[:index] + string[index+1].upper() + string[index+2:])
     return string
 
+
 def parentes(string):
     index = 0
     index_of_open_parentes = None
@@ -84,16 +84,30 @@ def count(string, char):
     return count_of
 
 
+def capitalize(string):
+    """
+        Принимает строку и заменяет первую букву каждого слова на заглавную.
+        Слова отделяются друг от друга пробелами и переходом строки
+        'this is my world' -> 'This Is My World'
+        'hello' -> 'Hello'
+        'one
+        two' -> 
+        'One
+        Two'
+    """
+    
+    pass
 
 
-
-
-
-
-
-
-
-
-
-
-  
+def paretntesize(string):
+    """
+        Принимает строку, которая может содержать скобки. 
+        Возвращает кортеж из двух элементов, где: 
+        1-й элемент - это исходная строка, но первое корректное вхождение выражения
+        внутри скобок заменено на символ $
+        2-й элемент - это то, что находилось в этих скобках
+        paretntesize('1 + (3 + 8)') # возвращает ('1 + $', '3 + 8')
+        paretntesize('1 + 3') # возвращает ('1 + 3', None)
+        paretntesize('(b + c)') # возвращает ('$', 'b + c')
+    """
+    pass
