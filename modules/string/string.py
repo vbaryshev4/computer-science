@@ -1,3 +1,6 @@
+#!/usr/local/bin/python3.6
+
+
 def trim(string):
     while string[0] == " ":
         string = string[1:]
@@ -54,6 +57,7 @@ def kebabToCamel(string):
         string = (string[:index] + string[index+1].upper() + string[index+2:])
     return string
 
+
 def capitalize(string):
     """
         Принимает строку и заменяет первую букву каждого слова на заглавную.
@@ -80,3 +84,30 @@ def paretntesize(string):
         paretntesize('(b + c)') # возвращает ('$', 'b + c')
     """
     pass
+
+def parentes(string):
+    index = 0
+    index_of_open_parentes = None
+
+    open_parentes = count(string, "(")
+    closing_parentes = count(string, ")")
+
+    if open_parentes != closing_parentes:
+        raise ValueError('Invalid math expression: ' + string)
+
+    while index < len(string):
+        if string[index] == "(":
+            index_of_open_parentes = index
+        elif string[index] == ")":
+            return index_of_open_parentes, string[index_of_open_parentes+1:index]
+        index += 1
+    return None
+
+
+def count(string, char):
+    count_of = 0
+    for i in string:
+        if i == char:
+            count_of += 1
+    return count_of
+

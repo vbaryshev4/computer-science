@@ -1,3 +1,7 @@
+#!/usr/local/bin/python3.6
+
+from modules.string import *
+
 fns = {
     '+': lambda x, y: x + y,
     '-': lambda x, y: x - y,
