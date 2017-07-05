@@ -14,8 +14,7 @@ def index_of(string, char):
     for i in range(len(string)):
         if string[i] == char:
             return i
-
-    return False
+    return -1
 
 def split_by_first(string, char):
     """
@@ -39,7 +38,7 @@ def split_by_first(string, char):
         return string
 
 def replace(string, char, new_char):
-    while index_of(string, char) != False:
+    while index_of(string, char) != -1:
         index = index_of(string, char)
         string = (string[:index] + new_char + string[index+1:])
     return string
@@ -51,7 +50,7 @@ def kebabToSnake(string):
 
 def kebabToCamel(string):
     # kebabToCamel - превращает строки вида kabeab-to-snake в kebabToCamel
-    while index_of(string, "-") != False:
+    while index_of(string, "-") != -1:
         index = index_of(string, "-")
         string = (string[:index] + string[index+1].upper() + string[index+2:])
     return string
@@ -63,29 +62,36 @@ def capitalize(string):
         Слова отделяются друг от друга пробелами и переходом строки
         'this is my world' -> 'This Is My World'
         'hello' -> 'Hello'
-        'one
-        two' -> 
-        'One
-        Two'
+        'one \ntwo' -> 'One \nTwo'
     """
-    string = trim(string)
-    while index_of(string, " ") != False:
-        index = index_of(string, " ")
-        string = (string[:index] + string[index+1].upper() + string[index+2:])
+    flag = 0
+    for i in range(len(string)):
+        if string[i].isalpha() == True and flag == 0:
+            string = string[:i] + string[i].upper() + string[i+1:]
+            flag += 1
+        elif string[i].isalpha() == False:
+            flag = 0
     return string
-    
-def paretntesize(string):
+
+
+def parentesize(string):
     """
         Принимает строку, которая может содержать скобки. 
         Возвращает кортеж из двух элементов, где: 
         1-й элемент - это исходная строка, но первое корректное вхождение выражения
         внутри скобок заменено на символ $
         2-й элемент - это то, что находилось в этих скобках
-        paretntesize('1 + (3 + 8)') # возвращает ('1 + $', '3 + 8')
-        paretntesize('1 + 3') # возвращает ('1 + 3', None)
-        paretntesize('(b + c)') # возвращает ('$', 'b + c')
+        parentesize('1 + (3 + 8)') # возвращает ('1 + $', '3 + 8')
+        parentesize('1 + 3') # возвращает ('1 + 3', None)
+        parentesize('(b + c)') # возвращает ('$', 'b + c')
     """
-    pass
+    i = index_of(string, "(")
+    if i == -1:
+        return string, None
+    else:
+        new_string = string[:i] + "$", replace(string[i+1:], ")", "")
+        return new_string
+
 
 def parentes(string):
     index = 0
