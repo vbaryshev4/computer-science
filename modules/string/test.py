@@ -4,15 +4,19 @@ import sys
 from modules.string import *
 from modules.tester import *
 
+testfn = "main"
 
 try:
 	testfn = sys.argv[1]
 except IndexError:
-	testfn = "main"
+	pass
+
 
 def _trim():
 	equality_case(trim('  a'), 'a', 'Should trim spaces from start of string')
 	equality_case(trim('a   '), 'a', 'Should trim spaces from end of string')
+	equality_case(trim('   a   '), 'a', 'Should trim spaces from start & end of string')
+
 
 def _kebab():
 	equality_case(kebabToSnake("kabeab-to-snake"), 'kabeab_to_snake', 'Should change all - to _')
@@ -41,6 +45,7 @@ def _parentesize():
 	equality_case(parentesize('(b + c)'), ('$', 'b + c'), "Should return set of 2, devided by open bracket")
 
 
+module = "string module"
 
 blocks = {
 	'trim': _trim,
@@ -53,7 +58,6 @@ blocks = {
 
 
 if testfn in blocks:
-	print(testfn)
 	blocks[testfn]()
 elif testfn == "main":
 	for i in blocks:
@@ -61,6 +65,8 @@ elif testfn == "main":
 		blocks[i]()
 		print('\n\n')
 else:
-	print("No function: %s" % testfn) 
+	print("----")
+	print("No function: %s in %s" % (testfn, module))
+
 
 
