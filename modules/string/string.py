@@ -15,8 +15,7 @@ def index_of(string, char):
     for i in range(len(string)):
         if string[i] == char:
             return i
-
-    return False
+    return -1
 
 def split_by_first(string, char):
     """
@@ -39,20 +38,67 @@ def split_by_first(string, char):
     else:
         return string
 
+def replace(string, char, new_char):
+    while index_of(string, char) != -1:
+        index = index_of(string, char)
+        string = (string[:index] + new_char + string[index+1:])
+    return string
 
 def kebabToSnake(string):
     # kebabToSnake - превращает строки вида kabeab-to-snake в kebab_to_snake
-    while index_of(string, "-") != False:
-        index = index_of(string, "-")
-        string = (string[:index] + "_" + string[index+1:])
+    string = replace(string, "-", "_")
     return string
 
 def kebabToCamel(string):
     # kebabToCamel - превращает строки вида kabeab-to-snake в kebabToCamel
-    while index_of(string, "-") != False:
+    while index_of(string, "-") != -1:
         index = index_of(string, "-")
         string = (string[:index] + string[index+1].upper() + string[index+2:])
     return string
+
+
+def capitalize(string):
+    """
+        Принимает строку и заменяет первую букву каждого слова на заглавную.
+        Слова отделяются друг от друга пробелами и переходом строки
+        'this is my world' -> 'This Is My World'
+        'hello' -> 'Hello'
+        'one \ntwo' -> 'One \nTwo'
+    """
+    string = list(string)
+    flag = 0
+    spacers = [' ', '\n', '\t']
+
+    for i in range(len(string)):
+        letter = string[i]
+
+        if letter not in spacers and flag == 0:
+            string[i] = letter.upper()
+            flag += 1
+            continue
+        elif letter in spacers:
+            flag = 0
+
+    return ''.join(string)
+
+
+def parentesize(string):
+    """
+        Принимает строку, которая может содержать скобки. 
+        Возвращает кортеж из двух элементов, где: 
+        1-й элемент - это исходная строка, но первое корректное вхождение выражения
+        внутри скобок заменено на символ $
+        2-й элемент - это то, что находилось в этих скобках
+        parentesize('1 + (3 + 8)') # возвращает ('1 + $', '3 + 8')
+        parentesize('1 + 3') # возвращает ('1 + 3', None)
+        parentesize('(b + c)') # возвращает ('$', 'b + c')
+    """
+    index, sub_string = parentes(string)
+    if sub_string == None:
+        return string, None
+
+    result = string[:index] + "$" + string[index + len(sub_string)+2:]
+    return result, sub_string
 
 def parentes(string):
     index = 0
@@ -70,7 +116,7 @@ def parentes(string):
         elif string[index] == ")":
             return index_of_open_parentes, string[index_of_open_parentes+1:index]
         index += 1
-    return None
+    return  -1, None
 
 
 def count(string, char):
@@ -80,17 +126,3 @@ def count(string, char):
             count_of += 1
     return count_of
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
