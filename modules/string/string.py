@@ -93,13 +93,12 @@ def parentesize(string):
         parentesize('1 + 3') # возвращает ('1 + 3', None)
         parentesize('(b + c)') # возвращает ('$', 'b + c')
     """
-    i = index_of(string, "(")
-    if i == -1:
+    index, sub_string = parentes(string)
+    if sub_string == None:
         return string, None
-    else:
-        new_string = string[:i] + "$", replace(string[i+1:], ")", "")
-        return new_string
 
+    result = string[:index] + "$" + string[index + len(sub_string)+2:]
+    return result, sub_string
 
 def parentes(string):
     index = 0
@@ -117,7 +116,7 @@ def parentes(string):
         elif string[index] == ")":
             return index_of_open_parentes, string[index_of_open_parentes+1:index]
         index += 1
-    return None
+    return  -1, None
 
 
 def count(string, char):
