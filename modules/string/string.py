@@ -64,14 +64,21 @@ def capitalize(string):
         'hello' -> 'Hello'
         'one \ntwo' -> 'One \nTwo'
     """
+    string = list(string)
     flag = 0
+    spacers = [' ', '\n', '\t']
+
     for i in range(len(string)):
-        if string[i].isalpha() == True and flag == 0:
-            string = string[:i] + string[i].upper() + string[i+1:]
+        letter = string[i]
+
+        if letter not in spacers and flag == 0:
+            string[i] = letter.upper()
             flag += 1
-        elif string[i].isalpha() == False:
+            continue
+        elif letter in spacers:
             flag = 0
-    return string
+
+    return ''.join(string)
 
 
 def parentesize(string):
