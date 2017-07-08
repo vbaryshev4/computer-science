@@ -2,6 +2,9 @@
 
 
 def trim(string):
+    if string == "":
+        return string
+
     while string[0] == " ":
         string = string[1:]
 
@@ -29,14 +32,36 @@ def split_by_first(string, char):
     """
     index = index_of(string, char)
 
-    if index != False:
+    if index != -1:
         return [
             char,
             trim(string[:index]),
             trim(string[index+1:])
         ]
     else:
+        return False
+
+def split_all_by(string, char):
+    """
+        Принимает строку-выражение и символ по которому
+        нужно разбить строку на списки
+        Внимание: исходные списки не должны содержать символ по
+        которому происходит разбиение
+        Example:
+         - split_all_by('3 + 2 + 6', '+') -> ['+', '3', ['+', '2', '6']]
+         - split_all_by('3 - 6 + 2', '-') -> ['-', '3', '6 + 2']
+         - split_all_by('3 + 9', '*') -> '3 + 9' 
+
+        Нужно использовать уже готовый split
+    """
+    result = split_by_first(string, char) 
+    if result:
+    # Массив из ['+', '3 - 3', '2 + 1']
+        result[2] = split_all_by(result[2], char)
+        return result
+    else:
         return string
+
 
 def replace(string, char, new_char):
     while index_of(string, char) != -1:
@@ -100,6 +125,7 @@ def parentesize(string):
     result = string[:index] + "$" + string[index + len(sub_string)+2:]
     return result, sub_string
 
+
 def parentes(string):
     index = 0
     index_of_open_parentes = None
@@ -125,4 +151,6 @@ def count(string, char):
         if i == char:
             count_of += 1
     return count_of
+
+
 
