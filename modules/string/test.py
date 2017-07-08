@@ -24,7 +24,7 @@ def _kebab():
 
 def _parentes():
 	equality_case(parentes("1+(2+3)"), (2, "2+3"), "Should work correctly")
-	equality_case(parentes("1+3"), None, "Should return None if not found")
+	equality_case(parentes("1+3"), (-1, None), "Should return None if not found")
 	error_case(lambda:parentes('('), 'Should raise ValueError on invalid expression')
 
 def _count():
@@ -43,6 +43,7 @@ def _parentesize():
 	equality_case(parentesize('1 + (3 + 8)'), ('1 + $', '3 + 8'), "Should return set of 2, devided by open bracket")
 	equality_case(parentesize('1 + 3'), ('1 + 3', None), "Should return set of 2, devided by open bracket")
 	equality_case(parentesize('(b + c)'), ('$', 'b + c'), "Should return set of 2, devided by open bracket")
+	error_case(lambda:parentesize('))'), "Should raise ValueError")
 
 
 module = "string module"
