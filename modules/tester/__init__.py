@@ -1,4 +1,2 @@
-#!/usr/local/bin/python3.6
-
-
 from modules.tester.suite import Suite
+from modules.tester.tester import *
