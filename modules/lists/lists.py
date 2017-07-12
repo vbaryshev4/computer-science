@@ -17,3 +17,28 @@ def shuffle(lst):
     	lst = lst[:elem] + lst[elem+1:]
     return shuffled_list
 
+def chunk(lst, size):
+    """ 
+        Принимает список - lst и целое число - size
+        Возвращает список списков длиной в size, заполненных данными из списка lst
+        Пример смотри ниже
+    """
+    result = []
+    a, b = 0, size
+    i = 0
+    while i < len(lst):
+        result.append(lst[a:b])
+        i += size
+        a += size
+        b += size
+    return result
+
+# chunk(list(range(10)), 2)
+# [[0, 1], [2, 3], [4, 5], [5, 6], [7, 8], [9]]
+
+# chunk(list(range(10)), 3)
+# [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
+
+# chunk(list(range(10)), 7)
+# [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]]
+

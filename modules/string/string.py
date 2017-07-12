@@ -153,3 +153,28 @@ def count(string, char):
         if i == char:
             count_of += 1
     return count_of
+
+
+def interpolate(string, data = {}):
+    """
+        Это функция просто шаблонизирует данные из словаря data в строку string
+        в таком же формате, как и метод .format строк. 
+        Т.е. заменяет все вхождения в строку string вида {ключ}
+        на значение одноименного ключа в data
+        Если такого ключа нет - то замены не происходит
+        Примеры смотри ниже
+    """
+    pass
+
+# interpolate('{a} {b}', {
+#     'a': 'Hello',
+#     'b': 'World'
+# }) # вернет строку 'Hello World'
+
+# interpolate('{one} + {two} = 3', {
+#     'one': '1',
+#     'two': '2'
+# }) # вернет строку '1 + 2 = 3'
+
+# interpolate('Nothing: {abc}', {'x': 'y'})
+# # вернет строку 'Nothing {abc}'
