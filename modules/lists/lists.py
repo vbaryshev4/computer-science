@@ -42,3 +42,41 @@ def chunk(lst, size):
 # chunk(list(range(10)), 7)
 # [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]]
 
+def change_last_item(arr, fn):
+    # ['a', ['c', 'd', ['e']]]    
+    last = arr[-1] #['c', 'd', ['e']]
+    stack = []
+
+    # 1. [ ['c', 'd', ['e']] ]
+    # 2. [ ['c', 'd', ['e']], ['e'] ]
+    while isinstance(last, list):
+        stack.append(last)
+        last = last[-1] 
+
+    stack.append(last)
+    
+    # 3. [ ['c', 'd', ['e']], ['e'], 'e' ]
+    
+    stack.reverse()
+
+    # reverse: ['e', ['e'], ['c', 'd', ['e']]]
+    print('stack:', stack)
+
+    prev = None
+
+
+    for i in stack:
+        # 1. i = 'e'
+        # 2. i = ['e']
+        # 3. i = ['c', 'd', ['e']]
+        if not isinstance(i, list):
+            prev = fn(i) 
+        else:
+            i[-1] = prev 
+            prev = i # prev = ['c', 'd', ['E']]
+
+    arr[-1] = prev 
+    return arr
+
+
+

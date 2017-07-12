@@ -1,3 +1,5 @@
+from modules.lists import change_last_item
+
 def trim(string):
     if string == "":
         return string
@@ -38,7 +40,7 @@ def split_by_first(string, char):
     else:
         return False
 
-def split_all_by(string, char):
+def split_all_by_recursive(string, char):
     """
         Принимает строку-выражение и символ по которому
         нужно разбить строку на списки
@@ -52,19 +54,27 @@ def split_all_by(string, char):
         Нужно использовать уже готовый split
     """
     result = split_by_first(string, char) 
+    
     if result:
     # Массив из ['+', '3 - 3', '2 + 1']
-        result[2] = split_by_first(result[2], char)
+        result[2] = split_all_by(result[2], char)
         return result
     else:
         return string
 
-# Дубляж?
-# def replace(string, char, new_char):
-#     while index_of(string, char) != -1:
-#         index = index_of(string, char)
-#         string = (string[:index] + new_char + string[index+1:])
-#     return string
+def split_all_by(string, char):
+    result = split_by_first(string, char) 
+
+    if not result:
+        return string
+
+    last_item = result[-1]
+
+    while index_of(last_item, char) != -1:
+        result = change_last_item(result, lambda str:split_by_first(str, char))
+        # last_item = result[-1]
+        # print('last_item', last_item)
+    return result
 
 def replace(string, char, new_char):
     while index_of(string, char) != -1:
@@ -110,7 +120,7 @@ def capitalize(string):
     return ''.join(string)
 
 
-def parentesize(string):
+def parentesize(string, value = '$', brackets = ['(', ')']):
     """
         Принимает строку, которая может содержать скобки. 
         Возвращает кортеж из двух элементов, где: 
@@ -121,28 +131,30 @@ def parentesize(string):
         parentesize('1 + 3') # возвращает ('1 + 3', None)
         parentesize('(b + c)') # возвращает ('$', 'b + c')
     """
-    index, sub_string = parentes(string)
+    index, sub_string = parentes(string, brackets)
     if sub_string == None:
         return string, None
 
-    result = string[:index] + "$" + string[index + len(sub_string)+2:]
+    result = string[:index] + value + string[index + len(sub_string)+2:]
     return result, sub_string
 
 
-def parentes(string):
+def parentes(string, brackets = ['(', ')']):
     index = 0
     index_of_open_parentes = None
 
-    open_parentes = count(string, "(")
-    closing_parentes = count(string, ")")
+    opener, closer = brackets
+
+    open_parentes = count(string, opener)
+    closing_parentes = count(string, closer)
 
     if open_parentes != closing_parentes:
         raise ValueError('Invalid math expression: ' + string)
 
     while index < len(string):
-        if string[index] == "(":
+        if string[index] == opener:
             index_of_open_parentes = index
-        elif string[index] == ")":
+        elif string[index] == closer:
             return index_of_open_parentes, string[index_of_open_parentes+1:index]
         index += 1
     return  -1, None
@@ -165,10 +177,20 @@ def interpolate(string, data = {}):
         Если такого ключа нет - то замены не происходит
         Примеры смотри ниже
     """
-    open_elem = index_of(string, "{")
-    closing_elem = index_of(string, "}")
-    
-    return string[open_elem+1:closing_elem]
+
+    result = parentes(string, ['{', '}'])
+
+    while result[0] != -1:
+        key = result[1]
+        value = data.get(key)
+        if value:
+            string = parentesize(string, value, ['{', '}'])
+    return string
+
+
+    # for key in data:
+    #     string = string.replace('{' + key + '}', data[key])
+    return string
 
 
 # interpolate('{a} {b}', {'a': 'Hello', 'b': 'World'}) 
@@ -179,3 +201,41 @@ def interpolate(string, data = {}):
 
 # interpolate('Nothing: {abc}', {'x': 'y'})
 # вернет строку 'Nothing {abc}'
+
+
+def substring(string, sub, start = 0):
+    d = 0
+    if len(sub) > len(string):
+        return -1
+
+    i = start
+  
+    while i < len(string):
+        letter = string[i]
+
+        if letter == sub[0]:
+            j = 1
+            while j < len(sub):
+                d += 1        
+                try:
+                    if sub[j] != string[i + j]:
+                        break
+                except:
+                    break
+                j += 1
+            if j == len(sub):
+                return i
+        i += 1
+
+        if len(sub) > len(string) - i:
+            return -1
+
+    return -1
+
+def full_replace(string, tpl, change):
+    s = substring(string, tpl)
+    while s != -1 and s <= len(string):
+        string = string[:s] + change + string[s + len(tpl):]
+        s = substring(string, tpl, s+len(change))
+    return string
+
