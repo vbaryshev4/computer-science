@@ -54,7 +54,7 @@ def split_all_by(string, char):
     result = split_by_first(string, char) 
     if result:
     # Массив из ['+', '3 - 3', '2 + 1']
-        result[2] = split_all_by(result[2], char)
+        result[2] = split_by_first(result[2], char)
         return result
     else:
         return string
