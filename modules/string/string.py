@@ -62,19 +62,19 @@ def split_all_by_recursive(string, char):
     else:
         return string
 
-def split_all_by(string, char):
-    result = split_by_first(string, char) 
+# def split_all_by(string, char):
+#     result = split_by_first(string, char) 
 
-    if not result:
-        return string
+#     if not result:
+#         return string
 
-    last_item = result[-1]
+#     last_item = result[-1]
 
-    while index_of(last_item, char) != -1:
-        result = change_last_item(result, lambda str:split_by_first(str, char))
-        # last_item = result[-1]
-        # print('last_item', last_item)
-    return result
+#     while index_of(last_item, char) != -1:
+#         result = change_last_item(result, lambda str:split_by_first(str, char))
+#         # last_item = result[-1]
+#         # print('last_item', last_item)
+#     return result
 
 def replace(string, char, new_char):
     while index_of(string, char) != -1:
@@ -178,18 +178,8 @@ def interpolate(string, data = {}):
         Примеры смотри ниже
     """
 
-    result = parentes(string, ['{', '}'])
-
-    while result[0] != -1:
-        key = result[1]
-        value = data.get(key)
-        if value:
-            string = parentesize(string, value, ['{', '}'])
-    return string
-
-
-    # for key in data:
-    #     string = string.replace('{' + key + '}', data[key])
+    for key in data:
+        string = string.replace('{' + key + '}', data[key])
     return string
 
 

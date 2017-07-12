@@ -38,6 +38,7 @@ def chunk(lst, size):
     """
     pass
 
+***Доделать interpolate***
 def interpolate(string, data = {}):
     """
         Это функция просто шаблонизирует данные из словаря data в строку string
@@ -73,6 +74,7 @@ interpolate('Nothing: {abc}', {'x': 'y'})
 # вернет строку 'Nothing {abc}'
 ```
 
+***Сделать***:
 #### Инфраструктура для тестирования
 
 Нужно написать класс `Suite`:
