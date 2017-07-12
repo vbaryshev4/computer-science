@@ -59,11 +59,12 @@ def split_all_by(string, char):
     else:
         return string
 
-def replace(string, char, new_char):
-    while index_of(string, char) != -1:
-        index = index_of(string, char)
-        string = (string[:index] + new_char + string[index+1:])
-    return string
+# Дубляж?
+# def replace(string, char, new_char):
+#     while index_of(string, char) != -1:
+#         index = index_of(string, char)
+#         string = (string[:index] + new_char + string[index+1:])
+#     return string
 
 def replace(string, char, new_char):
     while index_of(string, char) != -1:
@@ -164,17 +165,17 @@ def interpolate(string, data = {}):
         Если такого ключа нет - то замены не происходит
         Примеры смотри ниже
     """
-    pass
+    open_elem = index_of(string, "{")
+    closing_elem = index_of(string, "}")
+    
+    return string[open_elem+1:closing_elem]
 
-# interpolate('{a} {b}', {
-#     'a': 'Hello',
-#     'b': 'World'
-# }) # вернет строку 'Hello World'
 
-# interpolate('{one} + {two} = 3', {
-#     'one': '1',
-#     'two': '2'
-# }) # вернет строку '1 + 2 = 3'
+# interpolate('{a} {b}', {'a': 'Hello', 'b': 'World'}) 
+# вернет строку 'Hello World'
+
+# interpolate('{one} + {two} = 3', {'one': '1', 'two': '2'}) 
+# вернет строку '1 + 2 = 3'
 
 # interpolate('Nothing: {abc}', {'x': 'y'})
-# # вернет строку 'Nothing {abc}'
+# вернет строку 'Nothing {abc}'
