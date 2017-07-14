@@ -1,4 +1,2 @@
-from calc import *
-from lists import *
-from strings import *
-from tester import *
+# Этот файл должен быть пустым так как мы используем нотацию: 
+# from modules.<название модуля> import <имя>

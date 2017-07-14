@@ -1,4 +1,7 @@
-import sys
+import sys 
+
+from modules.tester import * 
+from modules.string import *
 
 testfn = "main"
 
@@ -48,9 +51,9 @@ def _split_by_first():
     equality_case(split_by_first('a + b + c', '+'), ['+', 'a', 'b + c'], 'Should work correct with double char')
 
 def _split_all():
-    equality_case(split_all_by('a', '+'), 'a', 'Should work correct with simple strings')
-    equality_case(split_all_by('a + b', '+'), ['+', 'a', 'b'], 'Should work correct with single char')
-    equality_case(split_all_by('a + b + c', '+'), ['+', 'a', ['+', 'b', 'c']], 'Should work correct with double char')
+    equality_case(split_all_by_recursive('a', '+'), 'a', 'Should work correct with simple strings')
+    equality_case(split_all_by_recursive('a + b', '+'), ['+', 'a', 'b'], 'Should work correct with single char')
+    equality_case(split_all_by_recursive('a + b + c', '+'), ['+', 'a', ['+', 'b', 'c']], 'Should work correct with double char')
 
 module = "string module"
 

@@ -1,4 +1,5 @@
-
+from modules.lists import * 
+from modules.tester import Suite
 
 
 class ListTests(Suite):

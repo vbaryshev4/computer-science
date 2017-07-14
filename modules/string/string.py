@@ -175,20 +175,9 @@ def interpolate(string, data = {}):
         Если такого ключа нет - то замены не происходит
         Примеры смотри ниже
     """
-
     for key in data:
         string = string.replace('{' + key + '}', data[key])
     return string
-
-
-# interpolate('{a} {b}', {'a': 'Hello', 'b': 'World'}) 
-# вернет строку 'Hello World'
-
-# interpolate('{one} + {two} = 3', {'one': '1', 'two': '2'}) 
-# вернет строку '1 + 2 = 3'
-
-# interpolate('Nothing: {abc}', {'x': 'y'})
-# вернет строку 'Nothing {abc}'
 
 
 def substring(string, sub, start = 0):

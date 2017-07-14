@@ -1,1 +1,1 @@
-from .lists import *
+from modules.lists.lists import *

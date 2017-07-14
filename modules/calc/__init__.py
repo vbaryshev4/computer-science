@@ -1,1 +1,1 @@
-from .calc import *
+from modules.calc.calc import *
