@@ -1,6 +1,5 @@
-from modules.lists import *
-from modules.tester.cases import *
-from modules.tester import Suite
+
+
 
 class ListTests(Suite):
 	def shuffle_test(self):

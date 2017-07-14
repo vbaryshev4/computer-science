@@ -23,5 +23,5 @@ def eval(tree):
 def get_tree(string):
     priotities = ['+', '-', '/', '*']
     tree = None
-
     pass
+

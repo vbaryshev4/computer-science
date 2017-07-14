@@ -1,1 +1,4 @@
-#!/usr/local/bin/python3.6
+from calc import *
+from lists import *
+from strings import *
+from tester import *

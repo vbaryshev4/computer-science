@@ -1,2 +1,3 @@
-from modules.tester.suite import Suite
-from modules.tester.tester import *
+from .cases import *
+from .suite import *
+from .tester import *

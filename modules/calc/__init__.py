@@ -1,1 +1,1 @@
-from modules.string import *
+from .calc import *

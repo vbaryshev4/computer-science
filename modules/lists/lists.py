@@ -1,5 +1,3 @@
-#!/usr/local/bin/python3.6
-
 from random import randint
 
 def shuffle(lst):
@@ -38,7 +36,6 @@ def chunk(lst, size):
 
 # chunk(list(range(10)), 3)
 # [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
-
 # chunk(list(range(10)), 7)
 # [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]]
 

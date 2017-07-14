@@ -1,5 +1,3 @@
-from modules.lists import change_last_item
-
 def trim(string):
     if string == "":
         return string
@@ -82,12 +80,12 @@ def replace(string, char, new_char):
         string = (string[:index] + new_char + string[index+1:])
     return string
 
-def kebabToSnake(string):
+def kebab_to_snake(string):
     # kebabToSnake - превращает строки вида kabeab-to-snake в kebab_to_snake
     string = replace(string, "-", "_")
     return string
 
-def kebabToCamel(string):
+def kebab_to_camel(string):
     # kebabToCamel - превращает строки вида kabeab-to-snake в kebabToCamel
     while index_of(string, "-") != -1:
         index = index_of(string, "-")
