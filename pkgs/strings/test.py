@@ -1,7 +1,7 @@
 import sys 
 
-from modules.tester import * 
-from modules.string import *
+from pkgs.tester import * 
+from pkgs.string import *
 
 testfn = "main"
 
