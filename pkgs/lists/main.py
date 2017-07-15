@@ -10,9 +10,9 @@ def shuffle(lst):
     shuffled_list = []
 
     while len(lst) != 0:
-    	elem = randint(0, len(lst) - 1)
-    	shuffled_list.append(lst[elem])
-    	lst = lst[:elem] + lst[elem+1:]
+        elem = randint(0, len(lst) - 1)
+        shuffled_list.append(lst[elem])
+        lst = lst[:elem] + lst[elem+1:]
     return shuffled_list
 
 

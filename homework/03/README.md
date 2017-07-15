@@ -23,7 +23,7 @@
 
 #### Python
 
- 1. Перепиши функцию `modules.string.split_all_by` так чтобы она не была рекурсивной (т.е. не вызывала бы сама себя)
+ 1. Перепиши функцию `pkgs.string.split_all_by` так чтобы она не была рекурсивной (т.е. не вызывала бы сама себя)
  >_Ответ:_ Похоже что нужно внутри вызывать только `split_by_first`
 
  2. Напиши следующие две функции
@@ -81,7 +81,7 @@ interpolate('Nothing: {abc}', {'x': 'y'})
  - Определять юнит тесты нужно будет так: 
 
 ```python
-from modules.tester import Suite
+from pkgs.tester import Suite
 
 class ListTests(Suite):
     def shuffle_test(self):
@@ -91,7 +91,7 @@ class ListTests(Suite):
 
  - Сами тесты запускаются следующим образом:
 ```python
-from modules.lists.test import ListTests
+from pkgs.lists.test import ListTests
 
 list_test = ListTests()
 list_test.run()
