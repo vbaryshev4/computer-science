@@ -1,11 +1,17 @@
 #!/usr/local/bin/python3.6
 
-import modules.string.test
-
-import modules.lists.test
+import sys
 
 from modules.lists.test import ListTests
+from modules.string.test import StringTests
 
-list_test = ListTests()
-list_test.run()
+from modules.tester import get_test_names
+
+test_names = get_test_names(sys.argv)
+
+list_test = ListTests('lists')
+string_test = StringTests('string')
+
+list_test.run(test_names)
+string_test.run(test_names)
 
