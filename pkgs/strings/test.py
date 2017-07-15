@@ -45,7 +45,7 @@ class StringTest(Suite):
         equality_case(split_by_first('a + b', '+'), ['+', 'a', 'b'], 'Should work correct with single char')
         equality_case(split_by_first('a + b + c', '+'), ['+', 'a', 'b + c'], 'Should work correct with double char')
 
-    # def split_all_test(self):
-    #     equality_case(split_all_by_recursive('a', '+'), 'a', 'Should work correct with simple strings')
-    #     equality_case(split_all_by_recursive('a + b', '+'), ['+', 'a', 'b'], 'Should work correct with single char')
-    #     equality_case(split_all_by_recursive('a + b + c', '+'), ['+', 'a', ['+', 'b', 'c']], 'Should work correct with double char')
+    def split_all_by_test(self):
+        equality_case(split_all_by('a', '+'), 'a', 'Should work correct with simple strings')
+        equality_case(split_all_by('a + b', '+'), ['+', 'a', 'b'], 'Should work correct with single char')
+        equality_case(split_all_by('a + b + c', '+'), ['+', 'a', ['+', 'b', 'c']], 'Should work correct with double char')    

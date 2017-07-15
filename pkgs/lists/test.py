@@ -14,3 +14,14 @@ class ListTests(Suite):
         equality_case(chunk(list(range(10)), 2), [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]], "Devides list by two-step sub-lists")
         equality_case(chunk(list(range(10)), 3), [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]], "Devides list by three-step sub-lists")
         equality_case(chunk(list(range(10)), 7), [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]], "Devides list by seven-step sub-lists")
+
+    def get_last_item_test(self):
+        equality_case(
+            get_last_item([1,2,3]), 3, 'Should work with 1-level list'
+        )
+        equality_case(
+            get_last_item([1,2,[3,4]]), 4, 'Should work with 2-level list'
+        )
+        equality_case(
+            get_last_item([1,2,[[3]]]), 3, 'Should work with 3-level list'
+        )

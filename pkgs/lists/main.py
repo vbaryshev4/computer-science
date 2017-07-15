@@ -55,3 +55,10 @@ def change_last_item(arr, fn):
 
     arr[-1] = prev 
     return arr
+
+def get_last_item(lst):
+    while isinstance(lst[-1], list):
+        lst = lst[-1]
+    return lst[-1]
+
+
