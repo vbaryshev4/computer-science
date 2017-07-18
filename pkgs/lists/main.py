@@ -2,9 +2,8 @@ from random import randint
 
 def shuffle(lst):
     """
-        Принимает список: lst и перемешивает в нем элементы
-        Возвращает другой (!sic) список. Это значит, 
-        что исходный список нельзя трогать.
+        >>> shuffle(['a','b','c'])
+        ['c', 'b', 'a']
     """
     lst = lst.copy()
     shuffled_list = []
@@ -18,9 +17,8 @@ def shuffle(lst):
 
 def chunk(lst, size):
     """ 
-        Принимает список - lst и целое число - size
-        Возвращает список списков длиной в size, заполненных данными из списка lst
-        Пример смотри ниже
+        >>> chunk(list(range(10)), 7)
+        [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]]
     """
     result = []
     a, b = 0, size
@@ -34,6 +32,11 @@ def chunk(lst, size):
 
 
 def change_last_item(arr, fn):
+    """
+        >>> change_last_item([1,2,3], print)
+        3
+        [1, 2, None]
+    """
     last = arr[-1]
     stack = []
 
@@ -57,6 +60,14 @@ def change_last_item(arr, fn):
     return arr
 
 def get_last_item(lst):
+    """
+        >>> get_last_item([0,1,2])
+        2
+        >>> get_last_item([0,[1,[2]]])
+        2
+        >>> get_last_item([0,[1,[2,3,4]]])
+        4
+    """
     while isinstance(lst[-1], list):
         lst = lst[-1]
     return lst[-1]
