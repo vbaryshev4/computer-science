@@ -1,3 +1,4 @@
+from pkgs.func import log
 from pkgs.lists import change_last_item, get_last_item, traverse
 
 """
