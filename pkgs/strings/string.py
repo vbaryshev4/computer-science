@@ -139,11 +139,11 @@ def split_all_by_recursive(string, char):
 
 def split_all_by(string, char):
     """
-        >>> split_all_by_recursive('3 + 2 + 6', '+')
+        >>> split_all_by('3 + 2 + 6', '+')
         ['+', '3', ['+', '2', '6']]
     """
     result = split_by_first(string, char) 
-    ['+', '2', '3']
+    # ['+', '2', '3']
 
     if not result:
         return string
@@ -237,6 +237,7 @@ def full_replace(string, tpl, change):
     """
         >>> full_replace("qwe rty", "qwe", "rty")
         'rty rty'
+
     """
     s = substring(string, tpl)
     while s != -1 and s <= len(string):
@@ -251,10 +252,15 @@ def parse(string): # В работе
     """
     symbols = ['+', '-', '/', '*']
     string_symbols = []
+    result = []
     
-    for i in string:
-        if i in symbols:
-            string_symbols += i
+    for i in range(len(string)):
+        if string[i] in symbols:
+            string_symbols += string[i]
+            string = string[:i] + '@' + string[i+1:]
 
-    return string_symbols
+    string = split_all_by(string, "@")
+
+    return string_symbols, string, result
+
 

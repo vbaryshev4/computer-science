@@ -70,6 +70,8 @@ def get_last_item(lst):
     """
     while isinstance(lst[-1], list):
         lst = lst[-1]
+        # print(lst)
     return lst[-1]
+
 
 
