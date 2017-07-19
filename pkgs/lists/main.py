@@ -73,5 +73,16 @@ def get_last_item(lst):
         # print(lst)
     return lst[-1]
 
+def traverse(node, fn):
+    if not isinstance(node, list):
+        return fn(node)
+    else:
+        for i in range(len(node)):
+            node[i] = traverse(node[i], fn)
+        return node
+
+
+
+
 
 

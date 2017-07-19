@@ -1,3 +1,5 @@
+from pkgs.strings import parse
+
 fns = {
     '+': lambda x, y: x + y,
     '-': lambda x, y: x - y,
@@ -9,7 +11,7 @@ def calc(expression):
     """
         >>> calc("qwe")
     """
-    tree = get_tree(expression)
+    tree = parse(expression)
     result = eval(tree)
     return result
 
@@ -26,12 +28,4 @@ def eval(tree):
     right = tree[2]
 
     return fn(eval(left), eval(right))
-
-def get_tree(string): # В работе
-    """
-        ????
-    """
-    priotities = ['+', '-', '/', '*']
-    tree = None
-    pass
 

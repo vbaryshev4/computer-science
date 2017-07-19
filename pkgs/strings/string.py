@@ -1,4 +1,4 @@
-from pkgs.lists import change_last_item, get_last_item
+from pkgs.lists import change_last_item, get_last_item, traverse
 
 """
 **************************
@@ -245,22 +245,28 @@ def full_replace(string, tpl, change):
         s = substring(string, tpl, s+len(change))
     return string
 
-def parse(string): # В работе
+def parse(string): 
     """
         >>> parse('1 + 2 - 3 * 4')
         ['+', '1', ['-', '2', ['*', '3', '4']]]
     """
-    symbols = ['+', '-', '/', '*']
-    string_symbols = []
-    result = []
+    symbols = ['+', '-', '*', '/']
+
+    for symb in symbols:
+        def fn(node):
+            if node in symbols:
+                return node
+            result = split_all_by(node, symb)
+            return result
+        string = traverse(string, fn)
     
-    for i in range(len(string)):
-        if string[i] in symbols:
-            string_symbols += string[i]
-            string = string[:i] + '@' + string[i+1:]
+    def str_to_int(node):
+        if node.isdigit():
+            node = int(node)
+        return node
 
-    string = split_all_by(string, "@")
+    string = traverse(string, str_to_int)
 
-    return string_symbols, string, result
+    return string
 
 
