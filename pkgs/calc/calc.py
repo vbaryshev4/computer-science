@@ -1,6 +1,4 @@
-#!/usr/local/bin/python3.6
-
-from modules.string import *
+from pkgs.strings import parse
 
 fns = {
     '+': lambda x, y: x + y,
@@ -10,13 +8,18 @@ fns = {
 }
 
 def calc(expression):
-    tree = get_tree(expression)
+    """
+        >>> calc("qwe")
+    """
+    tree = parse(expression)
     result = eval(tree)
     return result
 
-
-# ['+', 3, ['*', 4, 2]]
 def eval(tree):
+    """
+        >>> eval(4+2-2)
+        4
+    """
     if not isinstance(tree, list):
         return tree
 
@@ -26,10 +29,3 @@ def eval(tree):
 
     return fn(eval(left), eval(right))
 
-
-# --- *4* ---
-def get_tree(string):
-    priotities = ['+', '-', '/', '*']
-    tree = None
-
-    pass
