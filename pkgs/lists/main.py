@@ -74,12 +74,43 @@ def get_last_item(lst):
     return lst[-1]
 
 def traverse(node, fn):
+    """
+        >>> traverse([0,[1,[2,3,4]]], print)
+            0
+            1
+            2
+            3
+            4
+            [None, [None, [None, None, None]]]
+    """
     if not isinstance(node, list):
         return fn(node)
     else:
         for i in range(len(node)):
             node[i] = traverse(node[i], fn)
         return node
+
+
+def flatten(lst):
+    """
+        >>> flatten([1, [2, [3, [4]], 5]]);
+        [1, 2, 3, 4, 5]
+    """
+    result = []
+    
+    if not isinstance(lst, list):
+        # result = []
+        result.append(lst)        
+        return result # Final return of this function
+    else:
+        if len(lst) == 0:
+            return []
+
+        print("List is:",lst, "and result is:", result) # Recursion progress
+        return flatten(lst[0]) + flatten(lst[1:]) # Main call of recursion
+
+
+
 
 
 
