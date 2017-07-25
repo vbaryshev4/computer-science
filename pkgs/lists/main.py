@@ -1,5 +1,11 @@
 from random import randint
 
+"""
+**************************
+****** List to list* *****
+**************************
+"""
+
 def shuffle(lst):
     """
         >>> shuffle(['a','b','c'])
@@ -99,8 +105,8 @@ def flatten(lst):
     result = []
     
     if not isinstance(lst, list):
-        # result = []
-        result.append(lst)        
+        result.append(lst) # Append delete each element from the list
+        print("Cuted this list") # Signals that element != type(list)     
         return result # Final return of this function
     else:
         if len(lst) == 0:
@@ -109,6 +115,27 @@ def flatten(lst):
         print("List is:",lst, "and result is:", result) # Recursion progress
         return flatten(lst[0]) + flatten(lst[1:]) # Main call of recursion
 
+
+"""
+**************************
+****** List to dict* *****
+**************************
+"""
+
+def from_pairs(lst):
+    """
+        >>> from_pairs([['a', 1], ['b', 2], ['c', 3]]);
+        { 'a': 1, 'b': 2, 'c': 3}
+
+        >>> from_pairs([['a', 1], ['a', 2]]);
+        { 'a': 2 }
+    """
+    lst_dict = {}
+
+    for i in lst:
+        lst_dict.update([i])
+    
+    return lst_dict
 
 
 
