@@ -129,6 +129,17 @@ def drop(lst, items_to_del):
                 lst.remove(l)
     return lst
 
+def uniq(lst):
+    """
+        >>> uniq([1, 2, 5, 2, 3, 3])
+        [1, 2, 5, 3]
+
+        >>> uniq(['a', 'b', 'c', 'd', 'd', 'a', 'a'])
+        ['a', 'b', 'c', 'd']
+    """
+    result = set(lst)
+    return list(result)
+
 """
 **************************
 * Transform list to dict * 
