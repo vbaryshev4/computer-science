@@ -2,7 +2,7 @@ from random import randint
 
 """
 **************************
-****** List to list* *****
+**** Transform a list ****
 **************************
 """
 
@@ -115,10 +115,23 @@ def flatten(lst):
         print("List is:",lst, "and result is:", result) # Recursion progress
         return flatten(lst[0]) + flatten(lst[1:]) # Main call of recursion
 
+def drop(lst, items_to_del):
+    """
+        >>> drop([1, 2, 3, 1, 2, 3, 1, 2, 3], [2, 3]);
+        [1, 1, 1]
+
+        >>> drop([1, 2, 3, 1, 2, 3, 1, 2, 3], [1]);
+        [2, 3, 2, 3, 2, 3]
+    """
+    for i in items_to_del:
+        for l in lst:
+            if l == i: 
+                lst.remove(l)
+    return lst
 
 """
 **************************
-****** List to dict* *****
+* Transform list to dict * 
 **************************
 """
 
@@ -129,6 +142,9 @@ def from_pairs(lst):
 
         >>> from_pairs([['a', 1], ['a', 2]]);
         { 'a': 2 }
+
+        >>> from_pairs([['a', 2], ['a', 1]])
+        {'a': 1}
     """
     lst_dict = {}
 
