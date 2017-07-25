@@ -164,6 +164,24 @@ def from_pairs(lst):
     
     return lst_dict
 
+def count(lst):
+    """
+        >>> count(['a', 'a', 'b'])
+        {'a': 2, 'b': 1}
+
+        >>> count([1, 2, 3, 2, 3, 3])
+        {'1': 1, '2': 2, '3': 3}
+
+        >>> count(['hey', 'hey', 'guis'])
+        {'hey': 2, 'guis': 1}
+    """
+    result = dict.fromkeys(lst) # Create a dict
+    
+    for key in result.keys(): 
+        result[key] = lst.count(key)
+
+    return result
+
 
 
 
