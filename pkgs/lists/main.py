@@ -183,9 +183,20 @@ def count(lst):
     return result
 
 
+def pick(dctnry, lst):
+    """
+        >>> pick({'a': 10, 'b': 20}, ['a'])
+        {'a': 10}
 
+        >>> pick({'a': 10, 'b': 20, 'c': 30, 'd': 40}, ['a', 'd'])
+        {'a': 10, 'd': 40}
+    """
+    result = []
 
+    for l in lst:
+        if dctnry[l] == KeyError:
+            pass
+        else:
+            result.append([l, dctnry[l]])
 
-
-
-
+    return from_pairs(result)
