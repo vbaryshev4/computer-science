@@ -248,7 +248,7 @@ def full_replace(string, tpl, change):
 def parse(string): 
     """
         >>> parse('1 + 2 - 3 * 4')
-        ['+', '1', ['-', '2', ['*', '3', '4']]]
+        ['+', 1, ['-', 2, ['*', 3, 4]]]
     """
     symbols = ['+', '-', '*', '/']
 
