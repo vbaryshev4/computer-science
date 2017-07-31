@@ -45,22 +45,47 @@ class ListTests(Suite):
         )
 
     def traverse_test(self):
-        pass
+        equality_case(
+            traverse([0,[1,[2,3,4]]], print),[None, [None, [None, None, None]]],
+                "Should traverse tree using a func. Test case: print()"
+        )
 
     def flatten_test(self):
-        pass
+        equality_case(
+            flatten([1, [2, [3, [4]], 5]]), [1, 2, 3, 4, 5],
+                "Should compose a list from tree values. NB: with print() in func"
+        )
 
     def drop_test(self):
-        pass
+        equality_case(
+            drop([1, 2, 3, 1, 2, 3, 1, 2, 3], [2, 3]), [1, 1, 1],
+                "Should delete elems from list"
+        )
 
-    def uniq(self):
-        pass
+    def uniq_test(self):
+        equality_case(
+            uniq([1, 2, 5, 2, 3, 3]), [1, 2, 3, 5],
+                "Should collect only unique elements form list"
+        )
 
-    def from_pairs(self):
-        pass
+    def from_pairs_test(self):
+        equality_case(
+            from_pairs([['a', 1], ['b', 2], ['c', 3]]), {'a': 1, 'b': 2, 'c': 3},
+                "Should compose dict for list only with uniq keys"
+        )
 
-    def count(self):
-        pass
+    def count_test(self):
+        equality_case(
+            count(['a', 'a', 'b']), {'a': 2, 'b': 1},
+                "Should compose dict form list and count keys as values"
+        )
 
-    def pick(self):
-        pass
+    def pick_test(self):
+        equality_case(
+            pick({'a':10,'b':20,'c':30,'d': 40}, ['a', 'd']), {'a':10,'d':40},
+                "Should compose a new dict with keys in list"
+        )
+
+
+
+        
