@@ -1,4 +1,4 @@
-from pkgs.lists import change_last_item, get_last_item, traverse
+from pkgs.lists import change_last_item, get_last_item, traverse_recursive
 
 """
 **************************
@@ -258,14 +258,14 @@ def parse(string):
                 return node
             result = split_all_by(node, symb)
             return result
-        string = traverse(string, fn)
+        string = traverse_recursive(string, fn)
     
     def str_to_int(node):
         if node.isdigit():
             node = int(node)
         return node
 
-    string = traverse(string, str_to_int)
+    string = traverse_recursive(string, str_to_int)
 
     return string
 

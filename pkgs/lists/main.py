@@ -79,7 +79,7 @@ def get_last_item(lst):
         # print(lst)
     return lst[-1]
 
-def traverse(node, fn):
+def traverse_recursive(node, fn):
     """
         >>> traverse([0,[1,[2,3,4]]], print)
             0
@@ -93,11 +93,11 @@ def traverse(node, fn):
         return fn(node)
     else:
         for i in range(len(node)):
-            node[i] = traverse(node[i], fn)
+            node[i] = traverse_recursive(node[i], fn)
         return node
 
 
-def flatten(lst):
+def flatten_recursive(lst):
     """
         >>> flatten([1, [2, [3, [4]], 5]]);
         [1, 2, 3, 4, 5]
@@ -105,7 +105,7 @@ def flatten(lst):
     result = []
     
     if not isinstance(lst, list):
-        result.append(lst) # Append delete each element from the list
+        result.append(lst) # Append delete element from the list
         print("Cuted this list") # Signals that element != type(list)     
         return result # Final return of this function
     else:
@@ -113,7 +113,18 @@ def flatten(lst):
             return []
 
         print("List is:",lst, "and result is:", result) # Recursion progress
-        return flatten(lst[0]) + flatten(lst[1:]) # Main call of recursion
+        return flatten_recursive(
+            lst[0]
+        ) + flatten_recursive(
+            lst[1:]
+        ) # Main call of recursion
+
+def flatten(lst):
+    """
+        >>> flatten([1, [2, [3, [4]], 5]]);
+        [1, 2, 3, 4, 5]
+    """
+    pass
 
 def drop(lst, items_to_del):
     """

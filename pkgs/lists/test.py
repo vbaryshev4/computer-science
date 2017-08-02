@@ -44,15 +44,15 @@ class ListTests(Suite):
             get_last_item([1,2,[[3]]]), 3, 'Should work with 3-level list'
         )
 
-    def traverse_test(self):
+    def traverse_recursive_test(self):
         equality_case(
-            traverse([0,[1,[2,3,4]]], print),[None, [None, [None, None, None]]],
+            traverse_recursive([0,[1,[2,3,4]]], print),[None, [None, [None, None, None]]],
                 "Should traverse tree using a func. Test case: print()"
         )
 
-    def flatten_test(self):
+    def flatten_recursive_test(self):
         equality_case(
-            flatten([1, [2, [3, [4]], 5]]), [1, 2, 3, 4, 5],
+            flatten_recursive([1, [2, [3, [4]], 5]]), [1, 2, 3, 4, 5],
                 "Should compose a list from tree values. NB: with print() in func"
         )
 
