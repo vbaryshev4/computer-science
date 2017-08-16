@@ -10,6 +10,10 @@ fns = {
 def calc(expression):
     """
         >>> calc("qwe")
+        'qwe'
+
+        >>> calc("1+2-3")
+        0
     """
     tree = parse(expression)
     result = eval(tree)
@@ -28,4 +32,5 @@ def eval(tree):
     right = tree[2]
 
     return fn(eval(left), eval(right))
+
 
