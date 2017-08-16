@@ -15,15 +15,18 @@ def print_sum(a, b):
 	result = a + b
 	return result
 
-def times(func, loops, *args):
+def times(func, num):
 	"""
-		>>> times(print_sum, 2, 10, 3)
-		[13,13]
+	>>> print_sum_two_times = times(print_sum, 2)
+	>>> print_hey_six_times(10, 3)
+	13
+	13
 	"""
-	result = []
-	for i in range(loops):
-		r = (func(*args))
-		result.append(r)
-	return result
+	def result(*args):
+		t = num
+		while t:
+			func(*args)
+			t -= 1
 
+	return result
 

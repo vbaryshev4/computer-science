@@ -124,7 +124,23 @@ def flatten(lst):
         >>> flatten([1, [2, [3, [4]], 5]]);
         [1, 2, 3, 4, 5]
     """
-    pass
+    result = []
+    stack = []
+    
+    while lst != []:
+        stack.append(lst[0])
+        lst = lst[1:]
+
+        while stack != []:
+            item = stack[0]
+            if not isinstance(item, list):
+                result.append(item)
+                stack = stack[1:]
+            else:
+                stack = item + stack[1:]
+
+    return result
+
 
 def drop(lst, items_to_del):
     """
@@ -134,11 +150,12 @@ def drop(lst, items_to_del):
         >>> drop([1, 2, 3, 1, 2, 3, 1, 2, 3], [1]);
         [2, 3, 2, 3, 2, 3]
     """
-    for i in items_to_del:
-        for l in lst:
-            if l == i: 
-                lst.remove(l)
-    return lst
+    result = []
+    for i in lst:
+        if i not in items_to_del:
+            result.append(i)
+
+    return result
 
 def uniq(lst):
     """
@@ -148,8 +165,14 @@ def uniq(lst):
         >>> uniq(['a', 'b', 'c', 'd', 'd', 'a', 'a'])
         ['a', 'b', 'c', 'd']
     """
-    result = set(lst)
-    return list(result)
+    # result = set(lst)
+    # return list(result)
+    result = []
+    for i in lst:
+        if i not in result:
+            result.append(i)
+    return result
+
 
 """
 **************************
@@ -186,11 +209,12 @@ def count(lst):
         >>> count(['hey', 'hey', 'guis'])
         {'hey': 2, 'guis': 1}
     """
-    result = dict.fromkeys(lst) # Create a dict
-    
-    for key in result.keys(): 
-        result[key] = lst.count(key)
-
+    result = {}
+    for i in lst:
+        if i not in result:
+            result[i] = 1
+        else:
+            result[i] += 1
     return result
 
 
@@ -202,12 +226,12 @@ def pick(dctnry, lst):
         >>> pick({'a': 10, 'b': 20, 'c': 30, 'd': 40}, ['a', 'd'])
         {'a': 10, 'd': 40}
     """
-    result = []
+    result = {}
 
     for l in lst:
-        if dctnry[l] == KeyError:
-            pass
-        else:
-            result.append([l, dctnry[l]])
+        try:
+            result[l] = dctnry[l]
+        except KeyError:
+            pass            
 
-    return from_pairs(result)
+    return result

@@ -64,7 +64,7 @@ class ListTests(Suite):
 
     def uniq_test(self):
         equality_case(
-            uniq([1, 2, 5, 2, 3, 3]), [1, 2, 3, 5],
+            uniq([1, 2, 5, 2, 3, 3]), [1, 2, 5, 3],
                 "Should collect only unique elements form list"
         )
 
