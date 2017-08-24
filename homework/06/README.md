@@ -91,8 +91,6 @@ def is_user_over_18(user):
 
 Такой предикат возвращает True, если у данного аргумента свойство `'age'` больше 18
 
-Теперь напишем `filter`:
-
 ```python
 def filter(predicate, fn):
     pass
