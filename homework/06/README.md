@@ -78,7 +78,7 @@ data = [
     },
     ...
 ]
-
+```
 
 ## Фильтрация
 
@@ -100,18 +100,24 @@ def filter(predicate, fn):
 users_over_18 = filter(is_user_over_18, data)  #список всех пользователей старше 18
 ```
 
+Напиши функцию `filter`
+
 ## Преобразование
 
+Частой задачей является преобразование списка. Например у нас есть список чисел и нам нужно получить список их квадратов: 
 
+`[1, 2, 3, 4] -> [1, 4, 9, 16]`
+
+Хотелось бы иметь специальную функцию, которая бы применяла данную функцию к каждому элементу в списке.
 
 ```python
-def to_lower_username(user):
-    user['username'] = lower(user.get('username'))
-    return user
-
+def square(number):
+    return number ** 2
 
 def map(mapper, fn):
     pass
 
-to_lower_usernames = map(to_lower_usernames, data) 
+squares = map(square, [1, 2, 3, 4])
 ```
+
+Напиши функцию `map`
