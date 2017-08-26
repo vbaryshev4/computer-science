@@ -30,3 +30,9 @@ def times(func, num):
 
 	return result
 
+
+def curry(fn, *curried_args):
+	def fn(*args):
+		arguments = curried_args + args
+		return fn(*arguments)
+	return fn

@@ -173,6 +173,13 @@ def uniq(lst):
             result.append(i)
     return result
 
+def map(fn_mapper, lst):
+    return [fn_mapper(i) for i in lst]
+
+def filter(fn_predicate, lst):
+    return [i for i in lst if fn_predicate(i) == True]
+
+
 
 """
 **************************
