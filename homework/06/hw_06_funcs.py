@@ -34,6 +34,7 @@ users = [
 # 	return user.get('password')
 
 def get_property(property):
+
 	def getter(_dict):
 		return _dict.get(property)
 	return getter
@@ -45,6 +46,9 @@ def add(a):
 
 def is_over_18(user):
 	return user.get('age') > 18
+
+a = 666
+get_property(a)
 
 usernames = map(get_property('username'), users)
 passwords = map(get_property('password'), users)
