@@ -16,20 +16,6 @@ users = {
 ## Реализация filter и map для dict
 # Придумать и спроектировать filter и map, но работающие со словарями.
 
-users = {
-    'joe': {
-        'age': 12,
-        'username': '@joe'
-    },
-    'tim': {
-        'age': 19,
-        'username': '@trooo'
-    },
-    'bob': {
-        'age': 33,
-        'username': '@bibob'
-    }
-}
 
 def get_property(property):
     def getter(_dict):
@@ -69,4 +55,3 @@ over_18 = dict_filter(over(18), users)
 users = {'tim': {'age': 19,'username': '@trooo'},'bob': {'age': 33,'username': '@bibob'}}
 '''
 print(over_18)
-
