@@ -34,7 +34,6 @@ usernames = dict_map(get_property('username'), users)
 '''
 users = {'joe': '@joe','tim': '@trooo','bob': '@bibob'}
 '''
-print(usernames)
 
 def over(age):
     def predicate(user):
@@ -54,4 +53,50 @@ over_18 = dict_filter(over(18), users)
 '''
 users = {'tim': {'age': 19,'username': '@trooo'},'bob': {'age': 33,'username': '@bibob'}}
 '''
-print(over_18)
+
+#### once
+
+#`once` - функция, которая принимает функцию fn 
+# и возвращает функцию, которая вызывает fn не больше одного
+
+def print_hello():
+    print('hello')
+
+'''
+>>> print_hello()
+>>> 'hello'
+>>> print_hello()
+>>> 'hello'
+>>> print_hello()
+>>> 'hello'
+'''
+
+# Задача: написать эту функцию
+def once(fn):
+    c = 0
+    while c != 2:
+        c += 1
+        return fn()
+    return -1
+
+print_hello_once = once(print_hello)
+
+
+'''
+>>> 'hello'
+>>> print_hello_once #ничего не происходит
+>>> print_hello_once #ничего не происходит
+>>> print_hello_once #ничего не происходит
+'''
+
+# Функция once как бы ограничивает выполнение функции, 
+# которую ей передали и дает ей возможность вызываться только один раз.
+
+##!! – ограничивает выполнение функции в рамаках работы python -i ???? 
+##!! или при перезагрузке программы она не должна больше работать ????
+
+
+
+
+
+
