@@ -79,11 +79,6 @@ def print_hello():
 # и возвращает функцию g, которую если вызывать один раз, 
 # то она вызовет ƒ, а потом больше ничего не будет делать.
 
-# def get_property(property):
-#     def getter(_dict):
-#         return _dict.get(property)
-#     return getter
-
 #GLOBAL:
 c = 0
 
@@ -109,32 +104,20 @@ print_hello_once = once(print_hello)
 # Функция once как бы ограничивает выполнение функции, 
 # которую ей передали и дает ей возможность вызываться только один раз.
 
-##!! – ограничивает выполнение функции в рамаках работы python -i ???? 
-##!! или при перезагрузке программы она не должна больше работать ????
 
 #### negate
 
 # Функция `negate` - принимает предикат и возвращает предикат, 
 # который является обратным предикатом к данному
 
+
 def more_than_5(x):
     return x >= 5
 
 def negate(fn):
-    return fn
+    def gator(func):
+        return not(fn)
+    return gator
 
-# data = more_than_5(10) # True
-# print(data)
-
-less_or_equal_than_5 = negate(more_than_5(10))
-print("negate(more_than_5(10):", less_or_equal_than_5) # True
-
-less_or_equal_than_5 = negate(more_than_5(5))
-print("negate(more_than_5(5):", less_or_equal_than_5) # True
-
-less_or_equal_than_5 = negate(more_than_5(3))
-print("negate(more_than_5(3):", less_or_equal_than_5) # True
-
-
-
-
+more_than_5(10) # True
+less_or_equal_than_5 = negate(more_than_5)(10) # False
