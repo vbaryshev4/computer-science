@@ -31,7 +31,7 @@ def dict_map(fn_mapper, dctnry):
 
 
 usernames = dict_map(get_property('username'), users)
-print(usernames)
+print("dict_map & get_property:", usernames)
 '''
 users = {'joe': '@joe','tim': '@trooo','bob': '@bibob'}
 '''
@@ -51,7 +51,7 @@ def dict_filter(fn_predicate, dctnry):
 
 
 over_18 = dict_filter(over(18), users)
-print(over_18)
+print("dict_filter & over:", over_18)
 '''
 users = {'tim': {'age': 19,'username': '@trooo'},'bob': {'age': 33,'username': '@bibob'}}
 '''
@@ -62,7 +62,7 @@ users = {'tim': {'age': 19,'username': '@trooo'},'bob': {'age': 33,'username': '
 # и возвращает функцию, которая вызывает fn не больше одного
 
 def print_hello():
-    print('hello')
+    return 'hello'
 
 '''
 >>> print_hello()
@@ -74,21 +74,36 @@ def print_hello():
 '''
 
 # Задача: написать эту функцию
+
+# Т.е. once = это такая функция, которая принимает функцию ƒ 
+# и возвращает функцию g, которую если вызывать один раз, 
+# то она вызовет ƒ, а потом больше ничего не будет делать.
+
+# def get_property(property):
+#     def getter(_dict):
+#         return _dict.get(property)
+#     return getter
+
+#GLOBAL:
+c = 0
+
 def once(fn):
-    c = 0
-    while c != 2:
-        c += 1
-        return fn()
-    return -1
+    def call_once():
+        global c
+        if c == 0:
+            c += 1
+            return fn()
+    return call_once
 
 print_hello_once = once(print_hello)
 
 
 '''
+>>> print_hello_once()
 >>> 'hello'
->>> print_hello_once #ничего не происходит
->>> print_hello_once #ничего не происходит
->>> print_hello_once #ничего не происходит
+>>> print_hello_once() #ничего не происходит
+>>> print_hello_once() #ничего не происходит
+>>> print_hello_once() #ничего не происходит
 '''
 
 # Функция once как бы ограничивает выполнение функции, 
@@ -112,13 +127,13 @@ def negate(fn):
 # print(data)
 
 less_or_equal_than_5 = negate(more_than_5(10))
-print(less_or_equal_than_5) # True
+print("negate(more_than_5(10):", less_or_equal_than_5) # True
 
 less_or_equal_than_5 = negate(more_than_5(5))
-print(less_or_equal_than_5) # True
+print("negate(more_than_5(5):", less_or_equal_than_5) # True
 
 less_or_equal_than_5 = negate(more_than_5(3))
-print(less_or_equal_than_5) # True
+print("negate(more_than_5(3):", less_or_equal_than_5) # True
 
 
 
