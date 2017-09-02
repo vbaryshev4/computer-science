@@ -31,6 +31,7 @@ def dict_map(fn_mapper, dctnry):
 
 
 usernames = dict_map(get_property('username'), users)
+print(usernames)
 '''
 users = {'joe': '@joe','tim': '@trooo','bob': '@bibob'}
 '''
@@ -50,6 +51,7 @@ def dict_filter(fn_predicate, dctnry):
 
 
 over_18 = dict_filter(over(18), users)
+print(over_18)
 '''
 users = {'tim': {'age': 19,'username': '@trooo'},'bob': {'age': 33,'username': '@bibob'}}
 '''
@@ -95,7 +97,28 @@ print_hello_once = once(print_hello)
 ##!! – ограничивает выполнение функции в рамаках работы python -i ???? 
 ##!! или при перезагрузке программы она не должна больше работать ????
 
+#### negate
 
+# Функция `negate` - принимает предикат и возвращает предикат, 
+# который является обратным предикатом к данному
+
+def more_than_5(x):
+    return x >= 5
+
+def negate(fn):
+    return fn
+
+# data = more_than_5(10) # True
+# print(data)
+
+less_or_equal_than_5 = negate(more_than_5(10))
+print(less_or_equal_than_5) # True
+
+less_or_equal_than_5 = negate(more_than_5(5))
+print(less_or_equal_than_5) # True
+
+less_or_equal_than_5 = negate(more_than_5(3))
+print(less_or_equal_than_5) # True
 
 
 
