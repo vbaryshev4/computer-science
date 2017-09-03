@@ -79,15 +79,16 @@ def print_hello():
 # и возвращает функцию g, которую если вызывать один раз, 
 # то она вызовет ƒ, а потом больше ничего не будет делать.
 
-#GLOBAL:
-c = 0
+i = 0
 
 def once(fn):
+
     def call_once():
-        global c
-        if c == 0:
-            c += 1
+        global i 
+        if i == 0:
+            i += 1
             return fn()
+
     return call_once
 
 print_hello_once = once(print_hello)
@@ -115,8 +116,8 @@ def more_than_5(x):
     return x >= 5
 
 def negate(fn):
-    def gator(func):
-        return not(fn)
+    def gator(*args):
+        return not fn(*args)
     return gator
 
 more_than_5(10) # True
