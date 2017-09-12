@@ -42,23 +42,34 @@ def pkgs():
         body='<h1>pkgs statistics</h1>'
     )
 
-# path = "/Users/vbaryshev/Documents/Python_files/Trdat/computer-science/pkgs/"
 
 @app.route('/tree')
 def tree():
-    path = "/Users/vbaryshev/Documents/Python_files/Trdat/computer-science/pkgs/"
-    tree = []
-    i = 0
-    for (path, dirs, files) in os.walk(path):
-        tree.append(dirs[1::]) #Написать функцию, которая чистит список от заданных аргументов
-        # print(dirs)
-        i += 1
-        if i >= 1:
-            break
+    pkgs = []
+    counts = []
+    for root, dirs, files in os.walk('/Users/vbaryshev/Documents/Python_files/Trdat/computer-science/pkgs/'):
+        if '__pycache__' in dirs:
+            dirs.remove('__pycache__')
+        if '__init__.py' in files:
+            files.remove('__init__.py')
+        if '.DS_Store' in files:
+            files.remove('.DS_Store')
+    
+        root_level = 0
+        while root_level != 1:
+            root_level += 1
 
-    return template.format(
-    title='Server tree', body=get_body(tree[0]))
+        pkgs.append(dirs)
+        counts.append(len(files))
 
+    pkgs = pkgs[root_level-1]
+    counts = counts[root_level:]
+
+    result = []
+    for i in range(len(pkgs)):
+        result.append(pkgs[i]+ " " +str(counts[i]))
+
+    return template.format(title='Server tree', body=get_body(result))
 
 # Preferences
 app.run(port=8080, debug=True)
