@@ -47,7 +47,7 @@ def pkgs():
 def tree():
     pkgs = []
     counts = []
-    for root, dirs, files in os.walk('/Users/vbaryshev/Documents/Python_files/Trdat/computer-science/pkgs/'):
+    for root, dirs, files in os.walk('./pkgs/'):
         if '__pycache__' in dirs:
             dirs.remove('__pycache__')
         if '__init__.py' in files:
