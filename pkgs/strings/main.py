@@ -91,7 +91,7 @@ def substring(string, sub, start = 0):
 ***** Преобразующие *****
 *************************
 """
-def trim(string):
+def trim(string, char = ' '):
     """
         >>> trim(" qwe ")
         'qwe'
@@ -99,10 +99,10 @@ def trim(string):
     if string == "":
         return string
 
-    while string[0] == " ":
+    while string[0] == char:
         string = string[1:]
 
-    while string[-1] == " ":
+    while string[-1] == char:
         string = string[:-1]
 
     return string
