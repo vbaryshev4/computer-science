@@ -96,7 +96,8 @@ def more_than_5(x):
     return x > 5
 
 more_than_5(10) # True
-less_or_equal_than_5 = negate(more_than_5(10)) # False
+
+less_or_equal_than_5 = negate(more_than_5)
 
 less_or_equal_than_5(10) # False
 less_or_equal_than_5(3) # True
