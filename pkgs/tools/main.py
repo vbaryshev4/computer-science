@@ -6,7 +6,7 @@ d = {}
 prev_key = None
 for e in sys.argv[1:]:
     if e.startswith('-'):
-        key = kebab_to_snake(trim(e, '-'))
+        key = kebab_to_snake( trim(e, '-'))
         d[key] = True
         prev_key = key
     else:
