@@ -13,7 +13,11 @@ def clear_out(lst): #Clears out of system and cache files and dirs
 
 def path_and_verify(path): #Makes paths with a name of files and recoursive dirs
     
-    result = {"files":[], "dirs":{}} 
+    result = {
+        "files":[], 
+        "dirs":{}
+    }
+
     files = []
     dirs = {}
 
@@ -25,11 +29,17 @@ def path_and_verify(path): #Makes paths with a name of files and recoursive dirs
         elif os.path.isfile(new_path):
             files.append(i)
     
-    result.update({"files":files}) or result.update({"dirs":dirs})
+    result.update({
+        "files":files,
+        "dirs":dirs
+    })
 
     return result
 
+
 print(path_and_verify("."))
+
+
 
 # STDOUT EXAMPLE
 '''
