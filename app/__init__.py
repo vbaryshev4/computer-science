@@ -9,12 +9,15 @@ template = """
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="/static/main.css">
         <title>{title}</title>
     </head>
     <body>
-        {body}
+        <main>
+            {body}
+        </main>
     </body>
-</html>
+</  html>
 """
 
 def get_body(data):
