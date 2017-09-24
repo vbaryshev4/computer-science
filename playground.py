@@ -1,52 +1,4 @@
-import pkgs.tools.main
-
-
-### Обход файловой структуры
-
-# Необходимо написать функцию `read_fs`, 
-# которая принимает строку - это путь к дирректории. 
-# Она обходит дирректорию рекурсивно 
-# и выводит структуру следующего вида: 
-
-'''
-{'files': ['__init__.py', 'a.py', 'b.py'], 'dirs': {'dir1' : {'files': ['__init__.py', 'b.py'],'dirs': {'empty_dir': {}}},'dir2': {'files': ['one.py', 'two.py']}}}
-'''
-
-# Такая структура данных соответствует следующей файловой структуре: 
-
-'''
->>> fs_read('./root')
-
-# треугльником отмечены папки
-# звездочкой файлы
-
-> root
-...> dir1
-......> empty_dir #пустая папка
-......* __init__.py
-......* b.py
-...> dir2
-......* one.py
-......* two.py
-...* __init__.py
-...* a.py
-...* b.py
-'''
-
-### Некоторые условия и подсказки
-'''
- - fs_read рекурсивна
- - Если fs_read передать путь до пустой дирректории - 
-   она вернет пустой список (это зерно рекурсии)
- - Внутри тела функции должно быть определения - это файл или дирректория
-
-Тебе точно пригодятся
- - [os.listdir](https://docs.python.org/3/library/os.html#os.listdir)
- - [os.path.join](https://docs.python.org/3/library/os.path.html#os.path.join)
- - [os.path.isdir](https://docs.python.org/3/library/os.path.html#os.path.isdir)
- - [os.path.isfile](https://docs.python.org/3/library/os.path.html#os.path.isfile)
-'''
-
+# import pkgs.tools.main
 import os
 
 def clear_out(lst): #Clears out of system and cache files and dirs
@@ -59,9 +11,13 @@ def clear_out(lst): #Clears out of system and cache files and dirs
     return result
 
 
-def path_and_verify(path): #Makes paths with a name of files and dirs
+def path_and_verify(path): #Makes paths with a name of files and recoursive dirs
     
-    result = {"files":[], "dirs":{}} 
+    result = {
+        "files":[], 
+        "dirs":{}
+    }
+
     files = []
     dirs = {}
 
@@ -69,20 +25,23 @@ def path_and_verify(path): #Makes paths with a name of files and dirs
         new_path = os.path.join(path,i)
         if os.path.isdir(new_path):
             dirs.update({i:path_and_verify(new_path)})
-            # return path_and_verify(new_path)
 
         elif os.path.isfile(new_path):
             files.append(i)
     
-    result.update({"files":files}) or result.update({"dirs":dirs})
-
-    if files is [] and dirs is {}:
-        return result
+    result.update({
+        "files":files,
+        "dirs":dirs
+    })
 
     return result
 
+
 print(path_and_verify("."))
 
+
+
+# STDOUT EXAMPLE
 '''
 {'files': 
     ['computer-science.sublime-project', 
