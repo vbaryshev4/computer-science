@@ -39,15 +39,10 @@ def index():
         body=get_body(names_data)
     )
 
-@app.route('/pkgs')
+@app.route('/pkgs/')
 def pkgs():
-
-    body = ''
-
     tree = fs_read('./app/pkgs')
     body = generate_list('pkgs', tree)
-
-    # body = fs_read('./pkgs')['dirs'].keys()
 
     return template.format(
         title='pkgs stats',
