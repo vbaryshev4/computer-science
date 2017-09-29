@@ -41,7 +41,7 @@ def index():
 
 @app.route('/pkgs/')
 def pkgs():
-    tree = fs_read('./app/pkgs')
+    tree = fs_read('../app/pkgs')
     body = generate_list('pkgs', tree)
 
     return template.format(
@@ -50,9 +50,15 @@ def pkgs():
     )
 
 # http://flask.pocoo.org/snippets/76/
-@app.route('/file/<path:file_path>')
+@app.route('/<path:file_path>')
 def file(file_path):
-    return file_path
+    with open(file_path, 'r') as content_file:
+        content = content_file.read()
+    return template.format(
+        title='{0} - code content'.format(file_path),
+        body=content
+    )
+
 
 # Preferences
 app.run(port=8080, debug=True)

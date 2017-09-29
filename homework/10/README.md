@@ -24,8 +24,15 @@
 ### Что нужно прочитать
 
  - Про динамические импорты в Python и функцию `__import__`
- - Про метод format (мы много будем его использовать)
+ https://docs.python.org/3/library/functions.html#__import__
+ http://asvetlov.blogspot.ru/2010/05/blog-post.html
+ http://asvetlov.blogspot.ru/2010/05/2.html
+
+ - Про метод format (мы много будем его использовать) https://pythonworld.ru/osnovy/formatirovanie-strok-metod-format.html
+
  - Про `args` и `kwargs` в Python 
+ https://djangofan.ru/args-kwargs-python#whatisargskwargs
+ https://lancelote.gitbooks.io/intermediate-python/book/args_and_kwargs.html
 
 ### Пару простых заданий 
 
@@ -42,3 +49,7 @@
 >>> arr_all(name='John', second_name='Cena')
 >>> [ ['name', 'John'], ['second_name', 'Cena'] ]
 ```
+
+
+****
+Задание со звездочкой: что делать с гитом - решай полностью сам. Новая ветка, не новая, откуда отбранчеваться и все остальное - на твое усмотрение. Представь, что я менеджер проекта, дал тебе ссылку на тикет в Jira - дальше ты сам решаешь как все сделать. Потом только главное обоснуй свой выбор, ок?
