@@ -11,17 +11,24 @@ DIR = """
 
 FILE = """
 	<li class="file">
-		<a href="{href}">{file_name}</a>
+		<a href="{href}">{file_name}</a> {run}
 	</li>
 """
 
 def generate_files(files, path = []):
 	s = ""
 	for i in files:
-		file_path = '/file/' + '/'.join(path + [i])
+		file_package_path = '/'.join(path + [i])
+		file_path = '/file/' + file_package_path
+		run = ''
+
+		if i == 'test.py':
+			run = '..... <a href="{}">(▶ run test)</a>'.format('/test/' + '/'.join(path) + '/')
+
 		s += FILE.format(
 			file_name=i,
 			href=file_path,
+			run=run
 		)
 
 	return s

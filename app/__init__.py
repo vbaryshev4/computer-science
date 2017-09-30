@@ -73,6 +73,14 @@ def file(file_path):
         body=render_code(file_path, content)
     )
 
+@app.route('/test/<string:pkg>/')
+def run_test(pkg):
+    test_path = '.'.join(['pkgs', pkg, 'test'])
+    result = __import__(test_path)
+    result = getattr(result, pkg)
+    result = getattr(result, 'test')
+
+    return result.MainTest.run()
 
 # Preferences
 app.run(port=8080, debug=True)

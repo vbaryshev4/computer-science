@@ -8,6 +8,7 @@ except IndexError:
     pass
 
 class Suite():
+
     """
         Базовый класс для создания юнит-тестов
     """
@@ -30,3 +31,4 @@ class Suite():
             print("----")
             print("No function: {0} in {1} \n".format(testfn, self.module))
 
+        return 'yay!!'
