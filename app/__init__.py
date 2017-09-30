@@ -10,12 +10,16 @@ template = """
 <html>
     <head>
         <link rel="stylesheet" href="/static/main.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
         <title>{title}</title>
     </head>
     <body>
         <main>
             {body}
         </main>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     </body>
 </  html>
 """
