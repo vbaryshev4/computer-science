@@ -18,7 +18,7 @@ FILE = """
 def generate_files(files, path = []):
 	s = ""
 	for i in files:
-		file_path = '/pkgs/' + '/'.join(path + [i])
+		file_path = '/file/' + '/'.join(path + [i])
 		s += FILE.format(
 			file_name=i,
 			href=file_path,
