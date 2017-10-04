@@ -75,7 +75,7 @@ def file(file_path):
 
 @app.route('/test/<string:pkg>/')
 def run_test(pkg):
-    test_path = '.'.join(['pkgs', pkg, 'test'])
+    test_path = '.'.join(['app.pkgs', pkg, 'test'])
     result = __import__(test_path)
     result = getattr(result, pkg)
     result = getattr(result, 'test')

@@ -1,9 +1,7 @@
-#!/usr/local/bin/python3.6
-
-from pkgs.lists.test import ListTests
-from pkgs.strings.test import StringTest
-from pkgs.func.test import FuncTest
-from pkgs.calc.test import CalcTest
+from app.pkgs.lists.test import ListTests
+from app.pkgs.strings.test import StringTest
+from app.pkgs.func.test import FuncTest
+from app.pkgs.calc.test import CalcTest
 
 list_test = ListTests()
 list_test.run()
