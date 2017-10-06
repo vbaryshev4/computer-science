@@ -5,4 +5,4 @@ run:
 	python3 app/__init__.py
 
 test:
-	python3 ./test.py
+	python3 app/test_runner.py
