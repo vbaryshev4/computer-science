@@ -79,9 +79,6 @@ run_test()
         
 
 
-
-
-
 class Number(object):
     """docstring for Number"""
 
