@@ -1,49 +1,47 @@
 class Queue(object):
     """Queue in the list"""
-    def __init__(self, arg):
-        self.limit = arg
-        self.count = 0
+    def __init__(self, limit):
+        self.limit = limit
         self.items = []
-
-    def _plus_elem(self):
-        if self.limit > self.count:
-            self.count += 1
-            return self
-        else:
-            msg = "Max count overreached: {0} of queue: {1}".format(
-                self.count, 
-                self.items
-                )
-            raise ValueError(msg)
-
-    def _minus_elem(self):
-        if self.count != 0:
-            self.count -= 1
-            return self
-        else:
-            msg = "No elements in {0}".format(
-                self.items
-                )
-            raise ValueError(msg)
-
 
     def push(self, x):
         # вставляет элемент в конец очереди
-        self._plus_elem()
-        return self.items.append(x)
+        if self.limit > len(self.items):
+            self.items.append(x)
+            return self
+
+        else:
+            msg = "Max count overreached: {0} of queue: {1}".format(
+                self.limit,
+                self.items
+            )
+            raise ValueError(msg)
 
     def pop(self): 
         # вынимает первый элемент из очереди
-        self._minus_elem()
-        return self.items.pop(0)
+        if len(self.items) != 0:
+            self.items.pop(0)
+            return self
 
-    def reverse():
+        else:
+            msg = "No elements in {0}".format(
+                self.items
+            )
+            raise ValueError(msg)
+
+    def reverse(self):
         # переворачивает очередь
-        return None
+        self.items.reverse()
+        return self
 
-    def find():
+    def find(self, x):
         # ищет аргумент в очереди и возвращает его индекс
-        return None
+        i = self.items.index(x)
+        return i
+
+    def __len__(self):
+        return len(self.items)
+
 
 def test_status(x):
     print("Limit:{0}, count:{1}, list:{2}".format(
@@ -74,4 +72,4 @@ def run_test():
     finally:
         test_proccess('B_Test', 5)
 
-run_test()
+# run_test()
