@@ -17,7 +17,6 @@ class LinkedList(object):
         pre_last.tail = None
         return tail
 
-    
 
     def __len__(self):
         l = 1
