@@ -1,22 +1,24 @@
 from pkgs.fs import fs_read
+from pkgs.html import Tag
 
-DIR = """
-<h4> {dir_name} ({files_count})</h4>
-<ul>
-	{dirs}
-	{files}
-</ul>
-"""
+heading = Tag('h4')
+ul = Tag('ul')
+li = Tag('li')
+box = Tag('div')
+link = Tag('a')
 
-
-FILE = """
-	<li class="file">
-		<a href="{href}">{file_name}</a> {run}
-	</li>
-"""
+def renderDir(name, files_count, dirs, files):
+	return box([
+		heading([name, '(' + files_count + ')']),
+		ul([
+			dirs,
+			files
+		])
+	], class_name='tree')
 
 def generate_files(files, path = []):
 	s = ""
+
 	for i in files:
 		file_package_path = '/'.join(path + [i])
 		file_path = '/file/' + file_package_path
@@ -25,11 +27,10 @@ def generate_files(files, path = []):
 		if i == 'test.py':
 			run = '..... <a href="{}">(▶ run test)</a>'.format('/test/' + '/'.join(path) + '/')
 
-		s += FILE.format(
-			file_name=i,
-			href=file_path,
-			run=run
-		)
+		s += li([
+			link(i, href=file_path),
+			run
+		])
 
 	return s
 
@@ -50,12 +51,7 @@ def generate_list(root_name, tree, path = []):
 			path + [dir_name]
 		)
 
-	return DIR.format(
-		dir_name=root_name,
-		files_count=files_count,
-		dirs=dirs_items,
-		files=files_items
-	)
+	return renderDir(root_name, str(files_count), dirs_items, files_items)
 
 
 
