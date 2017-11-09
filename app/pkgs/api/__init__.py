@@ -1,0 +1,1 @@
+from pkgs.api.main import Resource, API
