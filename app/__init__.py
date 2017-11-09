@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request
 from pkgs.fs import *
+from pkgs.html import *
 from utils import generate_list
 
 app = Flask(__name__)
@@ -31,13 +32,27 @@ template = """
     <hr>
     <a href="">Back</a>
 '''
+style = Tag('link', rel="stylesheet")
+html = Tag('html')
+head = Tag('head')
+title = Tag('title')
+body = Tag('body')
+heading = Tag('h1')
 
+def html_page(title_value, body_value, styles=[]):
+    return html([
+        head([
+            title(title_value),
+            style('', href="/static/main.css")
+        ]),
+        body(body_value)
+    ])
 
 @app.route('/')
 def index():
-    return template.format(
-        title='My awesome site',
-        body="<h1>pkgs UI kit</h1>"
+    return html_page(
+        'My awesome site',
+        heading('pkgs UI kit')
     )
 
 @app.route('/pkgs/')
@@ -45,9 +60,12 @@ def pkgs():
     tree = fs_read('./app/pkgs')
     body = generate_list('pkgs', tree)
 
-    return template.format(
-        title='pkgs stats',
-        body='<h1>pkgs statistics</h1>' + body
+    return html_page(
+        'pkgs stats',
+        [
+            heading('pkgs statistics'),
+            body
+        ]
     )
 
 def render_code(path, content):

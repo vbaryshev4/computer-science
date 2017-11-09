@@ -54,3 +54,5 @@ list.render([
 #   <p>Three</p>
 # </ol>
 ```
+
+Прочитай про callable в Python.
