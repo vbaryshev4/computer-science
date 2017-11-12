@@ -7,6 +7,7 @@
 ```
 result = {  
     'name': 'Lists Module Tests',
+    'description': 'Tests for module lists',
     'file': 'lists.py',
     'path': 'pkgs.lists.lists',
     'status': True,
@@ -71,8 +72,7 @@ result = {
 ```html
 <div class="container">
     <h1 class="b-heading">Lists Module Tests</h1>
-    <div class="description">
-    </div>
+    <div class="description">Tests for module lists</div>
     <div class="status">Success</div>
     <ul class="tests">
         <li class="test">
