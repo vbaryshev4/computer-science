@@ -102,7 +102,13 @@ def run_test(pkg):
 
 @app.route('/testcase/')
 def run_test_case_template():
-    return render_template()
+    return html_page(
+        'Testcases',
+        [
+            heading('Testcases'),
+            render_template()
+        ]
+    )
 
 # Preferences
 app.run(port=8080, debug=True)
