@@ -100,5 +100,9 @@ def run_test(pkg):
 
     return result.MainTest.run()
 
+@app.route('/testcase/')
+def run_test_case_template():
+    return render_template()
+
 # Preferences
 app.run(port=8080, debug=True)
