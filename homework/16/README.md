@@ -134,3 +134,53 @@ result = {
     </ul>
 </div>
 ```
+
+
+## Часть 2: наследование от Tag
+
+Нужно реализовать классы наследующие `Tag`, но выполняющие более специфичную работу: 
+
+### Heading
+
+```python
+h3 = Heading(3)
+h4 = Heading(4)
+
+h3('Data') #<h3>Data</h3>
+h4('Data') #<h4>Data</h4>
+```
+
+
+### List
+
+```python
+ordered_list = List(ordered=True, item_class_name='li-item')
+unordered_list = List(ordered=False)
+
+ordered_list(['a', 'b', 'c'], class_name='list')
+'''
+<ol class="list">
+    <li class="li-item">a</li>
+    <li class="li-item">b</li>
+    <li class="li-item">c</li>
+</ol>
+'''
+
+unordered_list(['a', 'b', 'c'])
+'''
+<ul>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+</ul>
+'''
+```
+
+Объект класса `List` принимает список строк - которые становятся элементами списка в HTML (тэг `li`). 
+
+List принимает именованные параметры: 
+  - `ordered` - от этого зависит тэг. Если `True` - то `ol`, иначе `ul`
+  - `item_class_name` - html-класс, который будет присвоен каждому элементу списка (внутренним тэгам `li`)
+
+В остально поведение такое же как у класса `Tag`
+
