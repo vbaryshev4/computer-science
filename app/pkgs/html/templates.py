@@ -1,13 +1,12 @@
-from pkgs.html import Tag
+from pkgs.html import Tag, Img, Heading, List
 
 li = Tag('li')
 p = Tag('p')
 div = Tag('div')
 code = Tag('code')
-h4 = Tag('h4')
-h5 = Tag('h5')
+h4 = Heading(4)
+h5 = Heading(5)
 ol = Tag('ol') 
-
 
 def render_test(test):
     body = [ 

@@ -1,5 +1,5 @@
-from pkgs.html.tag import Tag, Img
-from pkgs.html.templates import render_test
+from html.pkgs.tag import Tag, Img, Heading, List
+from html.pkgs.templates import render_test
 
 def render_template():
     return render_test({

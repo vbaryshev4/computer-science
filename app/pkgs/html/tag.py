@@ -14,7 +14,6 @@ class Tag(object):
 			'html_for': 'for'
 		}
 
-
 		for key in attrs.keys():
 			attr_value = attrs.get(key)
 
@@ -30,7 +29,9 @@ class Tag(object):
 	def attrs_to_string(attrs):
 		s = ''
 		for key in attrs.keys():
-			s += ' {key}="{val}"'.format(key=key, val=attrs[key])
+			s += ' {key}="{val}"'.format(
+				key=key,val=attrs[key]
+				)
 
 		return s
 
@@ -44,7 +45,7 @@ class Tag(object):
 		attrs = self.attrs_to_string(attrs)
 
 		if isinstance(content, list):
-			content = ''.join(content)
+			content = self.parcer(content)
 
 		return self.template.format(
 			tag=self.tag,
@@ -52,10 +53,48 @@ class Tag(object):
 			content=content
 		)
 
+	def parcer(self, content):
+		content = ''.join(content)
+		return content
+
 class Img(Tag):
 	def __init__(self, **default_attrs):
-		super(Img, self).__init__('img', **default_attrs)
+		super(Img, self).__init__('img', 
+			**default_attrs
+			)
 
 	template = '<{tag} src="{content}" {attrs} />'
+
+class Heading(Tag):
+	def __init__(self, intgr, **default_attrs):
+		super(Heading, self).__init__(
+			'h' + str(intgr), **default_attrs
+			)
+	
+class List(Tag):
+	def __init__(self, ordered, **default_attrs):
+		self.class_for_li = None
+
+		if 'item_class_name' in default_attrs:
+			value = default_attrs['item_class_name']
+			self.class_for_li = value
+			default_attrs.pop('item_class_name')
+
+		if ordered is True:
+			super(List, self).__init__('ol', **default_attrs)
+		else:
+			super(List, self).__init__('ul', **default_attrs)
+
+	def parcer(self, content):
+		new_content = ''
+		for i in content:
+			li = Tag('li')
+			if self.class_for_li:
+				new_content += li.render(
+					i, class_name=self.class_for_li
+					)
+			else:
+				new_content += li.render(i)
+		return new_content
 
 		
