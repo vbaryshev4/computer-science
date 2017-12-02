@@ -1,1 +1,1 @@
-from pkgs.html.tag import Tag, Img
+from pkgs.html.tag import *
