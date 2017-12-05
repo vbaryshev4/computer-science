@@ -12,14 +12,14 @@ def init(app):
     def file(file_path):
         return file_controller(file_path)
 
-    @app.route('/file/<path:file_path>')
-    def file(file_path):
-        with open("app/pkgs/"+file_path, 'r') as content_file:
-            content = content_file.read()
-        return template.format(
-            title='{0} - code content'.format(file_path),
-            body=render_code(file_path, content)
-        )
+    # @app.route('/file/<path:file_path>')
+    # def file(file_path):
+    #     with open("app/pkgs/"+file_path, 'r') as content_file:
+    #         content = content_file.read()
+    #     return template.format(
+    #         title='{0} - code content'.format(file_path),
+    #         body=render_code(file_path, content)
+    #     )
 
 
 
