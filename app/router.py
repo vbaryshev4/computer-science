@@ -1,23 +1,29 @@
 from flask import request
 
 from controllers.index import index_controller
+from controllers.pkgs import file_controller
 
 def init(app):
     @app.route('/')
     def index():
         return index_controller(request)
 
-
-    # # http://flask.pocoo.org/snippets/76/
     @app.route('/file/<path:file_path>')
     def file(file_path):
-        !!! TODO !!!
-        # with open("app/pkgs/"+file_path, 'r') as content_file:
-        #     content = content_file.read()
-        # return template.format(
-        #     title='{0} - code content'.format(file_path),
-        #     body=render_code(file_path, content)
-        # )
+        return file_controller(file_path)
+
+    @app.route('/file/<path:file_path>')
+    def file(file_path):
+        with open("app/pkgs/"+file_path, 'r') as content_file:
+            content = content_file.read()
+        return template.format(
+            title='{0} - code content'.format(file_path),
+            body=render_code(file_path, content)
+        )
+
+
+
+
 
 # template = """
 # <!DOCTYPE html>
