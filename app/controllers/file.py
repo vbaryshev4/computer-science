@@ -1,15 +1,15 @@
-from templates.pages import index_page
+from templates.pages.file_page import *
 
-# http://127.0.0.1:8080/file/calc/calc.py
 def file_controller(file_path):
     with open("app/pkgs/"+file_path, 'r') as content_file:
         content = content_file.read()
+        file_path = file_path.split("/")[-1]
 
-    res = index_page({
-        'title': 'Index',
+    res = file_page({
+        'title': file_path,
         'body': content,
-        'styles': [
-            '/static/new.css']
+        'footer': 'Back',
+        'styles':['/static/new.css']
         })
 
     return res
