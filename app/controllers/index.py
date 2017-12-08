@@ -7,5 +7,4 @@ def index_controller(http_request):
 		'styles': [
 			'/static/new.css']
 		})
-	print('index_controller, res:', res, '\n')
 	return res

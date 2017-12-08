@@ -27,13 +27,7 @@ def body_template(data = {}):
 
 	return res
 
-def footer_template(data = {}):
-	res = hr.render(
-		a.render(
-			data.get('back_button')
-		), class_name='/'
-	)
-	return res
+
 
 
 

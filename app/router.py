@@ -7,7 +7,6 @@ def init(app):
     @app.route('/')
     def index():
         res = index_controller(request)
-        print('router, res:', res, '\n')
         return res
 
     @app.route('/file/<path:file_path>')

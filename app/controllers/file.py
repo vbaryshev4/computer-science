@@ -8,7 +8,6 @@ def file_controller(file_path):
     res = file_page({
         'title': file_path,
         'body': content,
-        'footer': 'Back',
         'styles':['/static/new.css']
         })
 

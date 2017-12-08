@@ -1,6 +1,5 @@
 from templates import body_template
 from templates import html_page_template
-from templates import footer_template
 
 def file_page(data):
 
@@ -10,14 +9,16 @@ def file_page(data):
 		'heading': data.get('title'),
 		'content': data.get('body'),
 	})
-
-	if data.get('footer'):
-		data['footer'] = footer_template({
-			'back_button': data.get('footer')
-			})
 	
-	print("LOOKING FOOTER", data)
 	res = html_page_template(data)
-	# print("LOOKING FOOTER", res)
 
-	return res
+	back_button = '''
+		<html>
+		<div>
+		<hr>
+		<a href="/">Back</a>
+		</div>
+		</html>
+		'''
+
+	return res + back_button
