@@ -1,24 +1,28 @@
+from pkgs.html import Tag
+
+div = Tag('div')
+hr = Tag('hr')
+a = Tag('a')
+pre = Tag('pre')
+code = Tag('code')
+
 from templates import body_template
 from templates import html_page_template
 
 def file_page(data):
+    data = data.copy()
 
-	data = data.copy()
+    content = [
+        pre.render(code.render(data.get('file_content'), class_name='content'), class_name='python'),
+        hr.render(''),
+        a.render('Back', href='/')
+    ]
 
-	data['body'] = body_template({
-		'heading': data.get('title'),
-		'content': data.get('body'),
-	})
-	
-	res = html_page_template(data)
+    data['body'] = body_template({
+        'heading': data.get('title'),
+        'content': content,
+    })
+    
+    res = html_page_template(data)
 
-	back_button = '''
-		<html>
-		<div>
-		<hr>
-		<a href="/">Back</a>
-		</div>
-		</html>
-		'''
-
-	return res + back_button
+    return res
