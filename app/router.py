@@ -2,6 +2,7 @@ from flask import request
 
 from controllers.index import index_controller
 from controllers.file import file_controller
+from controllers.pkgs import pkgs_controller
 
 def init(app):
     @app.route('/')
@@ -13,6 +14,9 @@ def init(app):
     def file(file_path):
         return file_controller(file_path)
 
+    @app.route('/pkgs/')
+    def route():
+        return pkgs_controller()
 
 
 # template = """
