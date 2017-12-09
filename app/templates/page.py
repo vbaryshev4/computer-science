@@ -4,18 +4,19 @@ html = Tag('html')
 body = Tag('body')
 head = Tag('head')
 title = Tag('title')
-style = Tag('style')
+link = Tag('link', rel='stylesheet')
 
 def head_template(title_string, styles = []):
     styles_list = []
     for style_addr in styles or []:
         styles_list.append(
-            style.render('', href=style_addr)
+            link.render('', href=style_addr)
         )
 
     return head.render([
         title.render(title_string),
-        style.render('', href="/static/main.css"),
+        link.render('', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css'),
+        link.render('', href='/static/main.css'),
         *styles_list
     ])
 

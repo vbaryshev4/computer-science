@@ -16,8 +16,8 @@ hr = Tag('hr')
 def body_template(data = {}):
 	res = div.render([
 		h.render(data.get('heading')),
-		div.render(data.get('content'), class_name="container")
-	])
+		div.render(data.get('content')),
+	], class_name='container')
 
 	return res
 
