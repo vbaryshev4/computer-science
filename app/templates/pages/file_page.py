@@ -1,28 +1,36 @@
 from pkgs.html import Tag
 
+from templates import body_template
+from templates import html_page_template
+
 div = Tag('div')
 hr = Tag('hr')
 a = Tag('a')
 pre = Tag('pre')
 code = Tag('code')
 
-from templates import body_template
-from templates import html_page_template
 
-def file_page(data):
+def file_page(data = {}):
     data = data.copy()
 
-    content = [
+    # Step 1
+    file_page_content = [
         pre.render(code.render(data.get('file_content'), class_name='content'), class_name='python'),
+        div.render('File path: ' + data.get('file_path'), class_name='path'),
         hr.render(''),
         a.render('Back', href='/')
     ]
 
-    data['body'] = body_template({
-        'heading': data.get('title'),
-        'content': content,
+    # Step 2
+    page_body = body_template({
+        'heading': data.get('file_name'),
+        'content': file_page_content,
     })
-    
-    res = html_page_template(data)
 
-    return res
+    # Step 3
+    final_html = html_page_template({
+        'title': data.get('file_name'),
+        'body': page_body
+    })
+
+    return final_html

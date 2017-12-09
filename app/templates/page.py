@@ -8,7 +8,7 @@ style = Tag('style')
 
 def head_template(title_string, styles = []):
     styles_list = []
-    for style_addr in styles:
+    for style_addr in styles or []:
         styles_list.append(
             style.render('', href=style_addr)
         )
