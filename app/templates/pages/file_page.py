@@ -1,5 +1,4 @@
 from pkgs.html import Tag
-
 from templates import body_template
 from templates import html_page_template
 
@@ -29,7 +28,7 @@ def file_page(data = {}):
 
     # Step 3
     final_html = html_page_template({
-        'title': data.get('file_name'),
+        'title': 'Content of file: ' + data.get('file_path'),
         'body': page_body
     })
 
