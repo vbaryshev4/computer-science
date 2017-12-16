@@ -25,6 +25,7 @@ class Tag(object):
 
         return new_attrs
     
+    
     @staticmethod
     def attrs_to_string(attrs):
         s = ''
@@ -32,7 +33,6 @@ class Tag(object):
             s += ' {key}="{val}"'.format(
                 key=key,val=attrs[key]
                 )
-
         return s
 
     def __call__(self, *args, **kwargs):
@@ -88,11 +88,15 @@ class List(Tag):
         else:
             super(List, self).__init__('ul', **default_attrs)
 
+
     def parcer(self, content):
         new_content = ''
         for i in content:
+            li = Tag('li')
             if self.class_for_li:
-                new_content += self.li.render(i, class_name=self.class_for_li)
+                new_content += li.render(
+                    i, class_name=self.class_for_li
+                    )
             else:
                 new_content += li.render(i)
         return new_content

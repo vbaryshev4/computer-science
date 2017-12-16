@@ -1,1 +1,2 @@
-from pkgs.html.tag import Tag, Img, Heading, List
+from pkgs.html.tag import *
+
