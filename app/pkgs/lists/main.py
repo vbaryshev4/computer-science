@@ -6,6 +6,27 @@ from random import randint
 **************************
 """
 
+def partirion(lst, fn):
+    lst = [[],[]]
+    for num in lst:
+        if fn(num):
+            lst[0].append(num)
+        else:
+            lst[1].append(num)
+
+    return lst
+
+def even(i):
+    return not i % 2
+
+def odd(i):
+    return i % 2
+    
+nums = [1,2,3,4,5,6,7,8,9,10]
+print(partirion(nums, odd))
+print(partirion(nums, even))
+
+
 def shuffle(lst):
     """
         >>> shuffle(['a','b','c'])
