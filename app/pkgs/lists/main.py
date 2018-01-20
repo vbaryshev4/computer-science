@@ -6,6 +6,17 @@ from random import randint
 **************************
 """
 
+def partirion(lst, fn):
+    lst = [[],[]]
+    for num in lst:
+        if fn(num):
+            lst[0].append(num)
+        else:
+            lst[1].append(num)
+
+    return lst
+    
+
 def shuffle(lst):
     """
         >>> shuffle(['a','b','c'])

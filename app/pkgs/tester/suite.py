@@ -31,4 +31,6 @@ class Suite():
             print("----")
             print("No function: {0} in {1} \n".format(testfn, self.module))
 
-        return 'yay!!'
+        return {
+            'status': 'ok'
+        }

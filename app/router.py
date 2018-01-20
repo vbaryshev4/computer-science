@@ -3,6 +3,7 @@ from flask import request
 from controllers.index import index_controller
 from controllers.file import file_controller
 from controllers.pkgs import pkgs_controller
+from controllers.test import package_test_controller
 
 def init(app):
     @app.route('/')
@@ -16,7 +17,13 @@ def init(app):
 
     @app.route('/pkgs/')
     def route():
+        # print('YO: 1', '\n')
         return pkgs_controller()
+
+    @app.route('/test/<string:pkg_name>/')
+    def package_test(pkg_name):
+        return package_test_controller(pkg_name)
+
 
 
 # template = """
