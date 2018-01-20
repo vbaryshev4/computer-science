@@ -10,32 +10,40 @@
 
 class NamesAndValues(object):
 
-    def __init__(self, names, values):
-        self.names = names
-        self.values = values
-        
-        def dict_joiner(keys, values):
-            if len(keys) is len(values):
-                return {keys[i]:values[i] for i in range(len(keys))}
-            else:
-                raise ValueError(
-                    '''
-                    \rLenght of names = {0} 
-                    \rLenght of values = {1} 
-                    \rLenght should be equal
-                    '''.format(len(keys), len(values))
-                    )
+    # @staticmethod
+    # def dict_joiner(keys, values):
+    #     if len(keys) is len(values):
+    #         return {keys[i]:values[i] for i in range(len(keys))}
+    #     else:
+    #         raise ValueError(
+    #             '''
+    #             \rLenght of names = {0} 
+    #             \rLenght of values = {1} 
+    #             \rLenght should be equal
+    #             '''.format(len(keys), len(values))
+    #         )
 
-        self.dictionary = dict_joiner(names, values)
+    def __init__(self, names, values):        
+        # self.dictionary = self.dict_joiner(names, values)
+        if len(names) != len(values):
+            raise ValueError(
+                '''
+                \rLenght of names = {0} 
+                \rLenght of values = {1} 
+                \rLenght should be equal
+                '''.format(len(names), len(values))
+            )
 
-    def __getattr__(self, arg):
-        dic = self.dictionary.copy()
-        if arg:
-            return dic.get(arg)
+        # setattr(self, 'name_1', 'a')
+        for i in range(len(names)):
+            setattr(self, names[i], values[i])
+
+    # def __getattr__(self, arg):
+    #     return dic.get(arg)
 
 
 instance = NamesAndValues(['name_1', 'name_2'], ['a', 'b'])
-print(instance.dictionary)
+# print(instance.dictionary)
 print(instance.name_1)
 print(instance.name_2)
 
@@ -55,10 +63,13 @@ import csv as csv
 import collections as col
 
 
-def get_public_methods(*args):
-    return {arg.__name__:dir(arg) for arg in args}
+def get_public_methods(module):
+    content = dir(module)
+    for item in content:
+        if callable(getattr(module, item)):
+            print(item)
 
-print(get_public_methods(csv, col))
+print(get_public_methods(csv))
 
 
 # 3. Напиши функцию, которая принимает объект `obj` 

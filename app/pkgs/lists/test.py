@@ -1,7 +1,7 @@
 from pkgs.lists import * 
 from pkgs.tester import *
 
-class ListTests(Suite):
+class Tests(Suite):
     
     module = "pkgs.lists"
 
