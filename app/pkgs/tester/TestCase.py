@@ -30,7 +30,7 @@ class TestCase:
         status = self.expected != given
         return self._result_struct(given, status, 'non_quality')
 
-    def to_greater(self, given):
+    def to_greater_then(self, given):
         self._check_has_attr()
         status = self.expected > given
         return self._result_struct(given, status, 'greater')

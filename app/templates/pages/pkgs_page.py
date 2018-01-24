@@ -57,7 +57,6 @@ def pkgs_page(tree = {}):
     pkgs_content = render_tree('pkgs', tree)
     # print('YO: 3.1', pkgs_content, '\n')
 
-
     # Step 2
     page_body = body_template({
         'heading': 'pkgs tree',
