@@ -1,8 +1,11 @@
 from pkgs.lists import * 
 from pkgs.tester import *
 
+
 class Tests(Suite):    
     module = "pkgs.lists"
+    name = 'Lists Module Tests'
+    description = 'Tests for module lists'
 
     @test('Shuffle test', 'shuffle')
     def shuffle_test():
@@ -10,32 +13,38 @@ class Tests(Suite):
         strs = ['a','b','c','d']
         mixed = [1, 2, 3, 'a', 'b','c']
 
-        yield Testcase(
+        yield TestCase(
             'Shuffles a list with ints'
-        ).expect(shuffle(ints)).not_to_be(ints)
+        ).expect(shuffle(ints))._not().to_be(ints)
 
-        yield Testcase(
+        yield TestCase(
             'Shuffles a list with str'
-        ).expect(shuffle(strs)).not_to_be(strs)
+        ).expect(shuffle(strs))._not().to_be(strs)
         
-        yield Testcase(
+        yield TestCase(
             'Shuffles a list with mixed'
-        ).expect(shuffle(mixed)).not_to_be(mixed)
+        ).expect(shuffle(mixed))._not().to_be(mixed)
         
 
-    # def chunk_test(self):
-    #     equality_case(
-    #         chunk(list(range(10)), 2), [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]], 
-    #             "Devides list by two-step sub-lists"
-    #     )
-    #     equality_case(
-    #         chunk(list(range(10)), 3), [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]],
-    #             "Devides list by three-step sub-lists"
-    #     )
-    #     equality_case(
-    #         chunk(list(range(10)), 7), [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]],
-    #             "Devides list by seven-step sub-lists"
-    #     )
+    @test('Chunk tests', 'chunk')
+    def chunk_test():
+        yield TestCase(
+            'Divides list by two-step sub-lists'
+        ).expect(
+            chunk(list(range(10)), 2)
+        ).to_be([[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]])
+                
+
+        yield TestCase(
+            'Devides list by three-step sub-lists'
+        ).expect(
+            chunk(list(range(10)), 3)
+        ).to_be([[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]])
+
+        # equality_case(
+        #     chunk(list(range(10)), 7), [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]],
+        #         "Devides list by seven-step sub-lists"
+        # )
 
     # def get_last_item_test(self):
     #     equality_case(

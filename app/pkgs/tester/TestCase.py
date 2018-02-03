@@ -13,7 +13,7 @@ checks = {
     'raise': raise_check,
     'has_attr': lambda a, b: hasattr(a, b),
     'type': lambda a, b: type(a) == b,
-    'instance': lambda a, b: instance(a, b),
+    'instance': lambda a, b: isinstance(a, b),
     'has_attr': lambda a, b: hasattr(a, b),
     'has_method': lambda a, b: hasattr(a, b) and callable(getattr(a, b))
     }

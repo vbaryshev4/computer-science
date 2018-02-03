@@ -5,15 +5,15 @@ from pkgs.tester.suite import Suite
 from pkgs.tester.TestCase import TestCase
 
 def test(test_name, test_method):
-	def decorator(fn):
-		def decorated(self):
-			if not hasattr(self, 'tests'):
-				self.tests = []
+    def decorator(fn):
+        def decorated(self):
+            if not hasattr(self, 'tests'):
+                self.tests = []
 
-			self.tests.append({
-				'name': test_name,
-				'method': test_method,
-				'fn': fn,
-			})
-		return decorated
-	return decorator
+            self.tests.append({
+                'name': test_name,
+                'method': test_method,
+                'fn': fn,
+            })
+        return decorated
+    return decorator

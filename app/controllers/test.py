@@ -26,6 +26,6 @@ def package_test_controller(pkg_name):
             }
 
     data['pkg_name'] = pkg_name
-
+    print(data)
     return test_page(data)
 
