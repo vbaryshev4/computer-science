@@ -1,38 +1,19 @@
-def print_hey():
-	"""
-		>>> print_hey()
-		hey
-	"""
-	return 'hey'
-	
-
 def print_sum(a, b):
-	"""
-		>>> print_sum(2,2)
-		4
-	"""
+    result = a + b
+    return result
 
-	result = a + b
-	return result
-
-def times(func, num):
-	"""
-	>>> print_sum_two_times = times(print_sum, 2)
-	>>> print_hey_six_times(10, 3)
-	13
-	13
-	"""
-	def result(*args):
-		t = num
-		while t:
-			func(*args)
-			t -= 1
-
-	return result
-
+def times(func, a, b, c):
+    def inner(func, a, b, c):
+        t = a
+        res = []
+        while t != 0:
+            res.append(func(b, c))
+            t -= 1
+        return res
+    return inner(func, a, b, c)
 
 def curry(fn, *curried_args):
-	def fn(*args):
-		arguments = curried_args + args
-		return fn(*arguments)
-	return fn
+    def fn(*args):
+        arguments = curried_args + args
+        return fn(*arguments)
+    return fn

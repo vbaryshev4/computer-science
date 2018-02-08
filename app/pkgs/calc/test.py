@@ -1,19 +1,21 @@
 from pkgs.calc import * 
 from pkgs.tester import *
 
-class CalcTest(Suite):
+class Tests(Suite):
+    module = "pkgs.calc"
+    name = 'Calc Module Tests'
+    description = 'Tests for module calc'
 
-	module = "pkgs.calc"
+    @test('Calc', 'calc_test')
+    def calc_test():
+        yield TestCase(
+            'Should return a result of calculation: string case'
+        ).expect(
+            calc("qwe")
+        ).to_be('qwe')
 
-	def calc_test(self):
-		self.equality_case(
-			calc("qwe"), 'qwe',
-				"Should return a result of calculation: string case"
-		)
-
-		self.equality_case(
-			calc("1+2-3"), 0,
-				"Should return a result of calculation: integers case"
-		)
-
-MainTest = CalcTest()
+        yield TestCase(
+            'Should return a result of calculation: integers case'
+        ).expect(
+            calc("1+2-3")
+        ).to_be(0)    

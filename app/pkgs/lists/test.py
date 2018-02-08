@@ -23,17 +23,16 @@ class Tests(Suite):
         
         yield TestCase(
             'Shuffles a list with mixed'
-        ).expect(shuffle(mixed))._not().to_be(mixed)
-        
+        ).expect(shuffle(mixed))._not().to_be(mixed)  
 
     @test('Chunk tests', 'chunk')
     def chunk_test():
+
         yield TestCase(
             'Divides list by two-step sub-lists'
         ).expect(
             chunk(list(range(10)), 2)
-        ).to_be([[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]])
-                
+        ).to_be([[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]])    
 
         yield TestCase(
             'Devides list by three-step sub-lists'
@@ -41,64 +40,90 @@ class Tests(Suite):
             chunk(list(range(10)), 3)
         ).to_be([[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]])
 
-        # equality_case(
-        #     chunk(list(range(10)), 7), [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]],
-        #         "Devides list by seven-step sub-lists"
-        # )
+        yield  TestCase(
+            'Devides list by seven-step sub-lists'
+        ).expect(
+            chunk(list(range(10)), 7)
+        ).to_be([[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]])
 
-    # def get_last_item_test(self):
-    #     equality_case(
-    #         get_last_item([1,2,3]), 3, 'Should work with 1-level list'
-    #     )
-    #     equality_case(
-    #         get_last_item([1,2,[3,4]]), 4, 'Should work with 2-level list'
-    #     )
-    #     equality_case(
-    #         get_last_item([1,2,[[3]]]), 3, 'Should work with 3-level list'
-    #     )
+    @test('Get last item test', 'get_last_item')
+    def get_last_item_test():
 
-    # def traverse_recursive_test(self):
-    #     equality_case(
-    #         traverse_recursive([0,[1,[2,3,4]]], print),[None, [None, [None, None, None]]],
-    #             "Should traverse tree using a func. Test case: print()"
-    #     )
+        yield TestCase(
+            'Should work with 1-level list'
+        ).expect(
+            get_last_item([1,2,3])
+        ).to_be(3)
 
-    # def flatten_recursive_test(self):
-    #     equality_case(
-    #         flatten_recursive([1, [2, [3, [4]], 5]]), [1, 2, 3, 4, 5],
-    #             "Should compose a list from tree values. NB: with print() in func"
-    #     )
+        yield TestCase(
+            'Should work with 2-level list'
+        ).expect(
+            get_last_item([1,2,[3,4]])
+        ).to_be(4)
 
-    # def drop_test(self):
-    #     equality_case(
-    #         drop([1, 2, 3, 1, 2, 3, 1, 2, 3], [2, 3]), [1, 1, 1],
-    #             "Should delete elems from list"
-    #     )
+        yield TestCase(
+            'Should work with 3-level list'
+        ).expect(
+            get_last_item([1,2,[[3]]])
+        ).to_be(3)
 
-    # def uniq_test(self):
-    #     equality_case(
-    #         uniq([1, 2, 5, 2, 3, 3]), [1, 2, 5, 3],
-    #             "Should collect only unique elements form list"
-    #     )
+    @test('Traverse recursive test', 'traverse_recursive')
+    def traverse_recursive_test():
 
-    # def from_pairs_test(self):
-    #     equality_case(
-    #         from_pairs([['a', 1], ['b', 2], ['c', 3]]), {'a': 1, 'b': 2, 'c': 3},
-    #             "Should compose dict for list only with uniq keys"
-    #     )
+        yield TestCase(
+            'Should traverse tree using a func. Test case: print()'
+        ).expect(
+            traverse_recursive([0,[1,[2,3,4]]], print)
+        ).to_be([None, [None, [None, None, None]]])
 
-    # def count_test(self):
-    #     equality_case(
-    #         count(['a', 'a', 'b']), {'a': 2, 'b': 1},
-    #             "Should compose dict form list and count keys as values"
-    #     )
+        yield TestCase(
+            'Should compose a list from tree values. NB: with print() in func'
+        ).expect(
+            traverse_recursive([1, [2, [3, [4]], 5]], print)
+        ).to_be([1, 2, 3, 4, 5])
 
-    # def pick_test(self):
-    #     equality_case(
-    #         pick({'a':10,'b':20,'c':30,'d': 40}, ['a', 'd']), {'a':10,'d':40},
-    #             "Should compose a new dict with keys in list"
-    #     )
+    @test('Drop test', 'drop')
+    def drop_test():
 
+        yield TestCase(
+            'Should delete elems from list'
+        ).expect(
+            drop([1, 2, 3, 1, 2, 3, 1, 2, 3], [2, 3])
+        ).to_be([1, 1, 1])
 
+    @test('Uniq test', 'uniq')
+    def uniq_test():
 
+        yield TestCase(
+            'Should collect only unique elements form list'
+        ).expect(
+            uniq([1, 2, 5, 2, 3, 3])
+        ).to_be([1, 2, 5, 3])
+
+    @test('From pairs test', 'from_pairs')
+    def from_pairs_test():
         
+        yield TestCase(
+            'Should compose dict for list only with uniq keys'
+        ).expect(
+            from_pairs([['a', 1], ['b', 2], ['c', 3]])
+        ).to_be({'a': 1, 'b': 2, 'c': 3})
+
+    @test('Count test','count')
+    def count_test():
+        
+        yield TestCase(
+            'Should compose dict form list and count keys as values'
+        ).expect(
+            count(['a', 'a', 'b'])
+        ).to_be({'a': 2, 'b': 1})
+
+    @test('Pick test', 'pick')
+    def pick_test():
+        
+        yield TestCase(
+            'Should compose a new dict with keys in list'
+        ).expect(
+            pick({'a':10,'b':20,'c':30,'d': 40}, ['a', 'd'])
+        ).to_be({'a':10,'d':40})
+

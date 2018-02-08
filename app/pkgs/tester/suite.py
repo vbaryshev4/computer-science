@@ -20,13 +20,6 @@ class Suite():
             if attr.endswith("_test") and callable(attr_value):
                 attr_value()
 
-        # tests = [
-        #     {
-        #         name: str.
-        #         method: str,
-        #         fn: function -> generator
-        #     }
-        # ] 
         tests = []
 
         for test in self.tests:
